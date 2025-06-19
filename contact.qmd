@@ -1,6 +1,6 @@
 ---
 title: "Contact Me"
-description: "Explore California housing trends and market insights for 2025. Updated data for buyers, sellers, and investors."
+description: ""
 ---
 
 ## Schedule Your Free Consultation
