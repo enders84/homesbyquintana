@@ -1,0 +1,115 @@
+{
+    "sources": [
+        {
+            "DOI": "10.1093/comjnl/27.2.97",
+            "ISSN": "0010-4620",
+            "URL": "https://doi.org/10.1093/comjnl/27.2.97",
+            "author": [
+                {
+                    "family": "Knuth",
+                    "given": "Donald E."
+                }
+            ],
+            "container-title": "Comput. J.",
+            "id": "knuth84",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        1984,
+                        5
+                    ]
+                ]
+            },
+            "page": "97-111",
+            "publisher": "Oxford University Press, Inc.",
+            "publisher-place": "USA",
+            "title": "Literate programming",
+            "type": "article-journal",
+            "volume": "27"
+        },
+        {
+            "author": [
+                {
+                    "family": "Secinaroa",
+                    "given": "Silvana"
+                },
+                {
+                    "family": "Calandraa",
+                    "given": "Davide"
+                },
+                {
+                    "family": "Lanzalongaa",
+                    "given": "Federico"
+                },
+                {
+                    "family": "Ferraris",
+                    "given": "Alberto"
+                }
+            ],
+            "container-title": "Journal of Business Research",
+            "id": "Secinaroa2022",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "title": "Electric vehicles’ consumer behaviors: Mapping the field and providing a research agenda",
+            "title-short": "Electric vehicles’ consumer behaviors",
+            "type": "article-journal"
+        },
+        {
+            "URL": "https://arxiv.org/abs/2201.05070",
+            "abstract": "The paper quantifies the impact of race, poverty, politics, and age on COVID-19 vaccination rates in counties in the continental US. Both, OLS regression analysis and Random Forest machine learning algorithms are applied to quantify factors for county-level vaccination hesitancy. The machine learning model considers joint effects of variables (race/ethnicity, partisanship, age, etc.) simultaneously to capture the unique combination of these factors on the vaccination rate. By implementing a state-of-the-art Artificial Intelligence Explanations (AIX) algorithm, it is possible to solve the black box problem with machine learning models and provide answers to the \"how much\" question for each measured impact factor in every county. For most counties, a higher percentage vote for Republicans, a greater African American population share, and a higher poverty rate lower the vaccination rate. While a higher Asian population share increases the predicted vaccination rate. The impact on the vaccination rate from the Hispanic population proportion is positive in the OLS model, but only positive for counties with a high Hispanic population (>65",
+            "author": [
+                {
+                    "family": "Lange",
+                    "given": "Carsten"
+                },
+                {
+                    "family": "Lange",
+                    "given": "Jian"
+                }
+            ],
+            "id": "Lange2022",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022,
+                        1
+                    ]
+                ]
+            },
+            "keyword": "cs.LG, cs.CY",
+            "title": "Applying machine learning and AI explanations to analyze vaccine hesitancy",
+            "type": "article-journal"
+        },
+        {
+            "URL": "https://www.ebook.de/de/product/41245677/michael_hilgers_wilfried_achenbach_entire_vehicle.html",
+            "author": [
+                {
+                    "family": "Michael Hilgers",
+                    "given": "Wilfried Achenbach"
+                }
+            ],
+            "id": "Hilgers2021",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021,
+                        3
+                    ]
+                ]
+            },
+            "number-of-pages": "52",
+            "publisher": "Springer Berlin Heidelberg",
+            "title": "Entire vehicle",
+            "type": "book"
+        }
+    ],
+    "project_biblios": [
+        "references.bib"
+    ]
+}

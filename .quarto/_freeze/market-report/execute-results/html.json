@@ -1,0 +1,17 @@
+{
+  "hash": "861fd7a8270068eaa0af4a19ba7394dc",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Market Reports\"\nformat: html\nexecute: \n  echo: false\n  warning: false\n  message: false\ntoc: true\ntoc-title: \"Quick Navigation\"\ntoc-location: left\ncss: styles.css\n---\n\n## 📈 California Housing Price Index (HPI) — Annual Trend\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](market-report_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n:::\n",
+    "supporting": [
+      "market-report_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

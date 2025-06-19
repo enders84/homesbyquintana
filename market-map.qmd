@@ -1,0 +1,71 @@
+---
+title: "Market Map"
+format: html
+execute: 
+  echo: false
+  warning: false
+  message: false
+toc: true
+toc-title: "Quick Navigation"
+toc-location: left
+css: styles.css
+---
+
+## Interactive Market Map
+
+```{r}
+library(readr)
+library(leaflet)
+library(dplyr)
+
+# Load data
+data <- read_csv("data/redfin_2025-06-10-14-04-13.csv")
+
+# Clean up columns
+data <- data %>%
+  rename(
+    Price = PRICE,
+    Latitude = LATITUDE,
+    Longitude = LONGITUDE,
+    Address = ADDRESS,
+    Beds = BEDS,
+    Baths = BATHS,
+    Sqft = SQUARE.FEET,
+    DOM = DAYS.ON.MARKET
+  ) %>%
+  filter(!is.na(Latitude), !is.na(Longitude))
+
+# Create color bins for Days on Market
+data <- data %>%
+  mutate(
+    Color = case_when(
+      DOM <= 14 ~ "green",
+      DOM <= 30 ~ "yellow",
+      DOM <= 60 ~ "orange",
+      DOM > 60 ~ "red",
+      TRUE ~ "gray"
+    )
+  )
+
+# Build the map
+leaflet(data) %>%
+  addTiles() %>%
+  addCircleMarkers(
+    ~Longitude, ~Latitude,
+    radius = 5,
+    color = ~Color,
+    popup = ~paste0(
+      "<b>", Address, "</b><br>",
+      "Price: $", format(Price, big.mark=","), "<br>",
+      "Beds: ", Beds, " | Baths: ", Baths, "<br>",
+      "Sqft: ", Sqft, "<br>",
+      "Days on Market: ", DOM
+    )
+  ) %>%
+  addLegend(
+    position = "bottomright",
+    colors = c("green", "yellow", "orange", "red"),
+    labels = c("0-14 days", "15-30 days", "31-60 days", "61+ days"),
+    title = "Days on Market"
+  )
+```

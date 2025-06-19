@@ -1,0 +1,10 @@
+# Helper packages
+library(dplyr)         # for basic data wrangling
+
+# Modeling packages
+library(keras)         # for fitting DNNs
+library(tfruns)        # for additional grid search & model training functions
+
+# Modeling helper package - not necessary for reproducibility
+library(tfestimators)  # provides grid search & model training interface
+

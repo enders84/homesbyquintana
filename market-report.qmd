@@ -1,0 +1,50 @@
+---
+title: "Market Reports"
+format: html
+execute: 
+  echo: false
+  warning: false
+  message: false
+toc: true
+toc-title: "Quick Navigation"
+toc-location: left
+css: styles.css
+---
+
+## 📈 California Housing Price Index (HPI) — Annual Trend
+
+```{r}
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(scales)
+
+# Load CA HPI data
+hpi_data <- read_csv("data/CAHPI.csv")
+hpi_data$Date <- as.Date(hpi_data$Date)
+
+# Group by year and calculate annual average
+hpi_data <- hpi_data %>%
+  mutate(Year = as.numeric(format(Date, "%Y"))) %>%
+  group_by(Year) %>%
+  summarize(AvgHPI = mean(HPI, na.rm = TRUE))
+
+# Plot annual averages with line + points
+ggplot(hpi_data, aes(x = Year, y = AvgHPI)) +
+  geom_line(color = "#27ae60", size = 1.5) +
+  geom_point(color = "#e67e22", size = 2) +
+  scale_x_continuous(breaks = hpi_data$Year) +
+  scale_y_continuous(labels = comma) +
+  labs(
+    title = "California Housing Price Index (HPI)",
+    subtitle = "Annual Averages — Smoothed Trend",
+    x = "Year", y = "HPI Index",
+    caption = "Source: CA HPI Data"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    plot.caption = element_text(size = 9)
+  )
+```

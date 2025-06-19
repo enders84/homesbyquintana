@@ -1,0 +1,92 @@
+---
+title: "Michael Quintana — Real Estate Agent"
+format: html
+toc: true
+toc-title: "Quick Navigation"
+toc-location: left
+css: styles.css
+---
+
+<div class="hero">
+
+# Welcome to Homes by Quintana
+
+Your trusted real estate expert serving Rancho Cucamonga and the San Bernardino & Los Angeles County region.
+
+Whether you're buying, selling, or investing — I can help you make informed decisions.
+
+</div>
+
+---
+
+# Explore the Market
+
+- [🏡 Get Your Home Price Estimate](https://slyfoxx84.shinyapps.io/house-prices-advanced-regression-techniques/)
+
+- [🧮 Market Insights](marketing-insights.qmd)
+
+- [📈 Market Watch](https://slyfoxx84.shinyapps.io/realestateapp/)
+
+- [🖥️ Market Map](market-map.qmd)
+
+---
+
+# Featured Listings
+
+🏡 **Active Listings:**  
+Dynamic listing data coming soon.
+
+🚀 **Coming Soon Properties:**  
+- Rancho Vista Estates — Opening Fall 2025  
+- Bella Vista Condos — Pre-sales starting soon!
+
+---
+
+# Services Offered
+
+🏡 Full-Service Residential Sales
+
+🔑 First-Time Buyer Assistance
+
+🛋️ Seller Staging Consultations
+
+📊 Investment Property Analysis
+
+🌎 Relocation Services
+
+---
+
+## Send me a message directly
+
+```{=html}
+<form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you">
+  <input type="hidden" name="form-name" value="contact" />
+  
+  <!-- Anti-spam honeypot -->
+  <p style="display:none">
+    <label>Don’t fill this out: <input name="bot-field" /></label>
+  </p>
+
+  <div>
+    <label for="name">Name:</label><br>
+    <input type="text" name="name" id="name" required placeholder="Your Name">
+  </div>
+
+  <div>
+    <label for="email">Email:</label><br>
+    <input type="email" name="email" id="email" required placeholder="Your Email">
+  </div>
+
+  <div>
+    <label for="phone">Phone Number:</label><br>
+    <input type="tel" name="phone" id="phone" placeholder="Your Phone Number">
+  </div>
+
+  <div>
+    <label for="message">Message:</label><br>
+    <textarea name="message" id="message" rows="3" required placeholder="How can I help you?"></textarea>
+  </div>
+
+  <button type="submit">Send Message</button>
+</form>
+```

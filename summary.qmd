@@ -1,0 +1,67 @@
+---
+title: "California Housing Market Insights"
+format: html
+toc: true
+toc-title: "Quick Navigation"
+toc-location: left
+css: styles.css
+---
+
+Welcome to my Market Insights page!  
+Here you'll find up-to-date trends and analysis of the housing market in California.
+
+---
+
+## Housing Price Trends
+
+The California housing market has seen substantial changes in recent years:
+
+- Median home prices continue to grow in high-demand areas.
+- Inventory remains tight in many regions.
+- Interest rate fluctuations are impacting buyer demand.
+
+🏡 Use my [Housing Price App](https://your-shinyapp-url.shinyapps.io/your-app-name/) to get **custom price predictions** based on your ZIP code and home details.
+
+---
+
+## National House Price Index (HPI)
+
+Tracking the **National HPI** helps us understand broader trends influencing California markets.
+
+**Recent trends include:**
+
+- Rising HPI through 2021–2023
+- Slight market stabilization in some metro areas
+- Continuing upward pressure in supply-constrained regions
+
+_Stay tuned — I will be adding interactive charts here soon!_
+
+---
+
+## Local Insights
+
+I provide clients with **local market data** including:
+
+- ZIP-level price trends  
+- Time on market  
+- Buyer activity metrics  
+- Competitive analysis for your neighborhood  
+
+---
+
+## Why It Matters
+
+Understanding market trends helps:
+
+- **Buyers** → know when and where to act
+- **Sellers** → price their home competitively
+- **Investors** → identify long-term opportunities
+
+---
+
+## Ready to explore?
+
+🏡 Try my [California Housing Price App](https://your-shinyapp-url.shinyapps.io/your-app-name/) → and contact me for a free consultation.
+
+---
+
