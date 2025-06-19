@@ -35,6 +35,7 @@ website:
 
 resources:
   - images
+  - includes/schema.html
 
 format:
   html:
