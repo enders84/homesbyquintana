@@ -12,33 +12,55 @@ toc-location: left
 css: styles.css
 ---
 
-## 📈 California Housing Price Index (HPI) — Annual Trend
+
+## 📝 Understanding This Market Report
+
+📊 **What is the HPI?**  
+The California Housing Price Index (HPI) reflects how home prices have changed over time. Each data point shows the average home price trend for that year across California.  
+
+📈 **Rising prices = Stronger market.**  
+An increasing HPI typically means homes are appreciating in value, demand is strong, and sellers have leverage.  
+
+📉 **Falling prices = Cooling market.**  
+When the HPI declines, it may reflect market corrections, rising interest rates, or changing buyer behavior.
+
+🗺 **How does this help you?**  
+Even though this data reflects state-level averages, Rancho Cucamonga often follows similar trends. Understanding these shifts can help you plan your buying or selling strategy more effectively.
+
+---
+
+## 📊 Price Trend Chart
 
 ```{r}
 library(readr)
 library(dplyr)
 library(ggplot2)
 library(scales)
+library(lubridate)
 
 # Load CA HPI data
 hpi_data <- read_csv("data/CAHPI.csv")
-hpi_data$Date <- as.Date(hpi_data$Date)
+hpi_data$Date <- mdy(hpi_data$Date)
 
 # Group by year and calculate annual average
 hpi_data <- hpi_data %>%
-  mutate(Year = as.numeric(format(Date, "%Y"))) %>%
+  mutate(Year = year(Date)) %>%
   group_by(Year) %>%
   summarize(AvgHPI = mean(HPI, na.rm = TRUE))
 
-# Plot annual averages with line + points
+# Plot with smooth trend line
 ggplot(hpi_data, aes(x = Year, y = AvgHPI)) +
-  geom_line(color = "#27ae60", size = 1.5) +
+  geom_line(color = "#27ae60", size = 1.2) +
   geom_point(color = "#e67e22", size = 2) +
-  scale_x_continuous(breaks = hpi_data$Year) +
+  geom_smooth(method = "loess", se = FALSE, color = "#2980b9", size = 1, span = 0.5) +
+  scale_x_continuous(
+    breaks = pretty(hpi_data$Year, n = 10), 
+    labels = scales::number_format(accuracy = 1)
+  ) +
   scale_y_continuous(labels = comma) +
   labs(
     title = "California Housing Price Index (HPI)",
-    subtitle = "Annual Averages — Smoothed Trend",
+    subtitle = "Annual Averages with Smoothed Trend",
     x = "Year", y = "HPI Index",
     caption = "Source: CA HPI Data"
   ) +
