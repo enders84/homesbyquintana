@@ -263,3 +263,39 @@ table, th, td {
 th {
     background-color: #f3f3f3;
 }
+/* Make sidebar collapse on mobile */
+@media (max-width: 768px) {
+  .quarto-sidebar {
+    position: fixed;
+    left: -300px;
+    transition: left 0.3s;
+  }
+
+  .quarto-sidebar.active {
+    left: 0;
+  }
+
+  .quarto-content {
+    margin-left: 0 !important;
+  }
+}
+
+/* Add hamburger button for mobile toggle */
+#mobile-sidebar-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  #mobile-sidebar-toggle {
+    display: block;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+  }
+}
+

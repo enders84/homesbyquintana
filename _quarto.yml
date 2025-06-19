@@ -44,3 +44,4 @@ format:
     toc: true
     toc-location: left
     include-after-body: schema.html
+    include-before-body: mobile-sidebar-toggle.html
