@@ -18,8 +18,8 @@ css: styles.css
 library(readr)
 library(leaflet)
 library(dplyr)
+library(scales)
 
-# Load data
 data <- read_csv("data/redfin_2025-06-10-14-04-13.csv")
 
 # Clean up columns
@@ -36,36 +36,36 @@ data <- data %>%
   ) %>%
   filter(!is.na(Latitude), !is.na(Longitude))
 
-# Create color bins for Days on Market
+# Assign color bins for DOM
 data <- data %>%
   mutate(
     Color = case_when(
-      DOM <= 14 ~ "green",
-      DOM <= 30 ~ "yellow",
-      DOM <= 60 ~ "orange",
-      DOM > 60 ~ "red",
-      TRUE ~ "gray"
+      DOM <= 14 ~ "#2ecc71",
+      DOM <= 30 ~ "#f1c40f",
+      DOM <= 60 ~ "#e67e22",
+      DOM > 60  ~ "#e74c3c",
+      TRUE ~ "#bdc3c7"
     )
   )
 
 # Build the map
 leaflet(data) %>%
-  addTiles() %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
   addCircleMarkers(
     ~Longitude, ~Latitude,
     radius = 5,
     color = ~Color,
     popup = ~paste0(
       "<b>", Address, "</b><br>",
-      "Price: $", format(Price, big.mark=","), "<br>",
+      "Price: $", comma(Price), "<br>",
       "Beds: ", Beds, " | Baths: ", Baths, "<br>",
-      "Sqft: ", Sqft, "<br>",
+      "Sq Ft: ", comma(Sqft), "<br>",
       "Days on Market: ", DOM
     )
   ) %>%
   addLegend(
     position = "bottomright",
-    colors = c("green", "yellow", "orange", "red"),
+    colors = c("#2ecc71", "#f1c40f", "#e67e22", "#e74c3c"),
     labels = c("0-14 days", "15-30 days", "31-60 days", "61+ days"),
     title = "Days on Market"
   )

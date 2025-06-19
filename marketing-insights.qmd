@@ -14,7 +14,7 @@ css: styles.css
 ## Current Market Trends
 
 - Home prices in Rancho Cucamonga and surrounding areas have risen **5.2%** in the past 12 months.
-- Average days on market: **27 days**.
+- Average days on market: **52.1 days**.
 - Current inventory level: **2.1 months of supply**.
 
 _Source: MLS / Zillow / Redfin data._

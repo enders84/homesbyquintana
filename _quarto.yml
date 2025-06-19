@@ -8,7 +8,6 @@ website:
   description: "Helping buyers and sellers in Rancho Cucamonga and surrounding areas make smarter real estate decisions with expert market insights and trusted service."
 
   sidebar:
-    title: "Homes by Quintana"
     logo: images/logo.png
     pinned: false
     style: floating
@@ -16,14 +15,12 @@ website:
     contents:
       - text: Home
         href: index.qmd
-      - text: Marketing Insights
-        href: marketing-insights.qmd
       - text: Market Report
         href: market-report.qmd
-      - text: Market Watch
-        href: https://slyfoxx84.shinyapps.io/realestateapp/
       - text: Market Map
         href: market-map.qmd
+      - text: Market Watch
+        href: https://slyfoxx84.shinyapps.io/realestateapp/
       - text: Price Your Home
         href: https://slyfoxx84.shinyapps.io/house-prices-advanced-regression-techniques/
       - text: Buyer & Seller Insights

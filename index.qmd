@@ -6,6 +6,7 @@ toc: true
 toc-title: "Quick Navigation"
 toc-location: left
 css: styles.css
+title-block-banner: false
 ---
 
 <div class="hero">

@@ -25,7 +25,7 @@ execute:
 
 ### 📊 Current Market Conditions
 
-The local real estate market remains highly competitive, with a median home price of **$859,000** and an average of **52 days on market**. Buyers should be prepared to act quickly when desirable properties become available.
+The local real estate market remains highly competitive, with a median home price of **$859,000** and an average of **29 days on market**. Buyers should be prepared to act quickly when desirable properties become available.
 
 ### 💰 Financing Tips
 
