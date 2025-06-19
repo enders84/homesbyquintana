@@ -1,5 +1,5 @@
 {
-  "hash": "4b882f8aa6015788248a0c3d3ca46ab2",
+  "hash": "9c495512b9cc02ccb6bbc4dc9758ccc2",
   "result": {
     "engine": "knitr",
     "markdown": "---\ntitle: \"Market Reports\"\ndescription: \"\"\nformat: html\nexecute: \n  echo: false\n  warning: false\n  message: false\ntoc: true\ntoc-title: \"Quick Navigation\"\ntoc-location: left\ncss: styles.css\n---\n\n\n## 📝 Understanding This Market Report\n\n📊 **What is the HPI?**  \nThe California Housing Price Index (HPI) reflects how home prices have changed over time. Each data point shows the average home price trend for that year across California.  \n\n📈 **Rising prices = Stronger market.**  \nAn increasing HPI typically means homes are appreciating in value, demand is strong, and sellers have leverage.  \n\n📉 **Falling prices = Cooling market.**  \nWhen the HPI declines, it may reflect market corrections, rising interest rates, or changing buyer behavior.\n\n🗺 **How does this help you?**  \nEven though this data reflects state-level averages, Rancho Cucamonga often follows similar trends. Understanding these shifts can help you plan your buying or selling strategy more effectively.\n\n---\n\n## 📊 Price Trend Chart\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](market-report_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n:::\n",

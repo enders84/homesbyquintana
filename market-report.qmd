@@ -60,16 +60,15 @@ hpi_long <- hpi_yearly %>%
                names_to = "Region",
                values_to = "HPI")
 
-# Plot
+# Plot (NO smooth trend line)
 ggplot(hpi_long, aes(x = Year, y = HPI, color = Region)) +
   geom_line(size = 1.2) +
   geom_point(size = 2) +
-  geom_smooth(aes(group = Region), se = FALSE, size = 1, span = 0.5, color = "gray50") +
   scale_y_continuous(labels = comma) +
   scale_x_continuous(breaks = pretty(hpi_long$Year, n = 10)) +
   labs(
     title = "California & Regional Housing Price Index (HPI)",
-    subtitle = "Annual Averages with Smoothed Trend",
+    subtitle = "Annual Averages",
     x = "Year", y = "HPI Index",
     caption = "Source: CA HPI Data"
   ) +
