@@ -1,5 +1,6 @@
 ---
 title: "Market Reports"
+description: "Explore California housing trends and market insights for 2025. Updated data for buyers, sellers, and investors."
 format: html
 execute: 
   echo: false

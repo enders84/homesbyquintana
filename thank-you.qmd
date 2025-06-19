@@ -1,5 +1,6 @@
 ---
 title: "Thank You"
+description: "Explore California housing trends and market insights for 2025. Updated data for buyers, sellers, and investors."
 ---
 
 ✅ Your message has been successfully submitted.  

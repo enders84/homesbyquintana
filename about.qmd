@@ -1,5 +1,6 @@
 ---
 title: "About Me"
+description: "Explore California housing trends and market insights for 2025. Updated data for buyers, sellers, and investors."
 format: html
 toc: true
 toc-title: "Quick Navigation"
