@@ -37,29 +37,38 @@ library(dplyr)
 library(ggplot2)
 library(scales)
 library(lubridate)
+library(tidyr)
 
-# Load CA HPI data
+# Load regional HPI data
 hpi_data <- read_csv("data/CAHPI.csv")
 hpi_data$Date <- mdy(hpi_data$Date)
 
-# Group by year and calculate annual average
-hpi_data <- hpi_data %>%
+# Group by year and calculate annual averages
+hpi_yearly <- hpi_data %>%
   mutate(Year = year(Date)) %>%
   group_by(Year) %>%
-  summarize(AvgHPI = mean(HPI, na.rm = TRUE))
+  summarize(
+    CA = mean(CASTHPI, na.rm = TRUE),
+    SF = mean(`San Francisco HPI`, na.rm = TRUE),
+    SD = mean(`San Diego HPI`, na.rm = TRUE),
+    LA = mean(`Los Angeles HPI`, na.rm = TRUE)
+  )
 
-# Plot with smooth trend line
-ggplot(hpi_data, aes(x = Year, y = AvgHPI)) +
-  geom_line(color = "#27ae60", size = 1.2) +
-  geom_point(color = "#e67e22", size = 2) +
-  geom_smooth(method = "loess", se = FALSE, color = "#2980b9", size = 1, span = 0.5) +
-  scale_x_continuous(
-    breaks = pretty(hpi_data$Year, n = 10), 
-    labels = scales::number_format(accuracy = 1)
-  ) +
+# Reshape into long format for multi-line plotting
+hpi_long <- hpi_yearly %>%
+  pivot_longer(cols = c("CA", "SF", "SD", "LA"),
+               names_to = "Region",
+               values_to = "HPI")
+
+# Plot
+ggplot(hpi_long, aes(x = Year, y = HPI, color = Region)) +
+  geom_line(size = 1.2) +
+  geom_point(size = 2) +
+  geom_smooth(se = FALSE, size = 1, span = 0.5) +
   scale_y_continuous(labels = comma) +
+  scale_x_continuous(breaks = pretty(hpi_long$Year, n = 10)) +
   labs(
-    title = "California Housing Price Index (HPI)",
+    title = "California & Regional Housing Price Index (HPI)",
     subtitle = "Annual Averages with Smoothed Trend",
     x = "Year", y = "HPI Index",
     caption = "Source: CA HPI Data"
