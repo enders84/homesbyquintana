@@ -129,11 +129,21 @@
     ]
   },
   {
-    "objectID": "contact.html#send-me-a-message-directly",
-    "href": "contact.html#send-me-a-message-directly",
+    "objectID": "contact.html#schedule-your-free-consultation",
+    "href": "contact.html#schedule-your-free-consultation",
     "title": "Contact Me",
-    "section": "Send me a message directly",
-    "text": "Send me a message directly\n\n  \n  \n  \n  \n    Don’t fill this out: \n  \n\n  \n    Name:\n    \n  \n\n  \n    Email:\n    \n  \n\n  \n    Phone Number:\n    \n  \n\n  \n    Message:\n    \n  \n\n  Send Message",
+    "section": "",
+    "text": "📞 Call or Email Me Anytime\n📧 HomesByQuintana@gmail.com\n📍 Rancho Cucamonga, CA",
+    "crumbs": [
+      "Contact"
+    ]
+  },
+  {
+    "objectID": "contact.html#send-me-a-message",
+    "href": "contact.html#send-me-a-message",
+    "title": "Contact Me",
+    "section": "Send Me a Message",
+    "text": "Send Me a Message\n\n  \n  \n  \n  \n    Don’t fill this out: \n  \n\n  \n    Name:\n    \n  \n\n  \n    Email:\n    \n  \n\n  \n    Phone Number:\n    \n  \n\n  \n    Message:\n    \n  \n\n  Send Message",
     "crumbs": [
       "Contact"
     ]
@@ -236,26 +246,6 @@
     "text": "📖 How to Use\n1️⃣ Editable Canva Templates:\nClick the Canva link → edit directly in Canva → export to PDF or PNG for print or social media.\n2️⃣ PNG Previews:\nClick to view or download → use in your marketing materials or social content.\n3️⃣ More templates coming soon — stay tuned!\n\n\nHave a template idea?\nSuggest a New Template",
     "crumbs": [
       "Templates"
-    ]
-  },
-  {
-    "objectID": "contact.html#schedule-your-free-consultation",
-    "href": "contact.html#schedule-your-free-consultation",
-    "title": "Contact Me",
-    "section": "",
-    "text": "📞 Call or Email Me Anytime\n📧 HomesByQuintana@gmail.com\n📍 Rancho Cucamonga, CA",
-    "crumbs": [
-      "Contact"
-    ]
-  },
-  {
-    "objectID": "contact.html#send-me-a-message",
-    "href": "contact.html#send-me-a-message",
-    "title": "Contact Me",
-    "section": "Send Me a Message",
-    "text": "Send Me a Message\n\n  \n  \n  \n  \n    Don’t fill this out: \n  \n\n  \n    Name:\n    \n  \n\n  \n    Email:\n    \n  \n\n  \n    Phone Number:\n    \n  \n\n  \n    Message:\n    \n  \n\n  Send Message",
-    "crumbs": [
-      "Contact"
     ]
   }
 ]

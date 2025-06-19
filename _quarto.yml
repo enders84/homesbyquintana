@@ -7,13 +7,6 @@ website:
   title: "Homes by Quintana"
   description: "Helping buyers and sellers in Rancho Cucamonga and surrounding areas make smarter real estate decisions with expert market insights and trusted service."
 
-format:
-  html:
-    css: styles.css
-    toc: true
-    toc-location: left
-    include-after-body: includes/schema.html
-
   sidebar:
     title: "Homes by Quintana"
     logo: images/logo.png
@@ -47,3 +40,6 @@ format:
   html:
     theme: cosmo
     css: styles.css
+    toc: true
+    toc-location: left
+    include-after-body: includes/schema.html

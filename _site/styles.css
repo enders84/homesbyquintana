@@ -148,7 +148,7 @@ p, li {
     text-decoration: underline;
 }
 
-/* Sidebar clean-up (no search bar anymore) */
+/* Sidebar */
 .sidebar {
     padding-top: 1rem;
     font-size: 0.95rem;
@@ -169,7 +169,6 @@ p, li {
     display: block;
 }
 
-/* Sidebar links */
 .sidebar-item a {
     padding: 0.3rem 0;
     display: block;
@@ -182,7 +181,7 @@ p, li {
     text-decoration: underline;
 }
 
-/* Form styling (contact form) */
+/* Contact Form Styling */
 form {
   max-width: 500px;
   margin: 2rem auto;
@@ -203,13 +202,24 @@ form label {
   margin-bottom: 0.5rem;
 }
 
-form input, form textarea {
+form input {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
   box-sizing: border-box;
+}
+
+form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  height: 100px;
+  resize: vertical;
 }
 
 form button {
@@ -227,7 +237,7 @@ form button:hover {
   background-color: #0056b3;
 }
 
-/* TOC (internal page nav) */
+/* Table of contents and cards */
 .toc {
     background-color: #f8f9fa;
     border: 1px solid #ddd;
@@ -235,13 +245,11 @@ form button:hover {
     border-radius: 8px;
 }
 
-/* Card shadows for content panels */
 .card, .panel {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     border-radius: 8px;
 }
 
-/* Clean table style */
 table {
     border-collapse: collapse;
     width: 100%;
