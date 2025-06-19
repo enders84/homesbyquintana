@@ -43,4 +43,4 @@ format:
     css: styles.css
     toc: true
     toc-location: left
-    include-after-body: includes/schema.html
+    include-after-body: schema.html
