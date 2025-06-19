@@ -10,7 +10,7 @@ website:
   sidebar:
     title: "Homes by Quintana"
     logo: images/logo.png
-    pinned: true
+    pinned: false
     style: floating
     search: false
     contents:
@@ -44,4 +44,3 @@ format:
     toc: true
     toc-location: left
     include-after-body: schema.html
-    include-before-body: mobile-sidebar-toggle.html
