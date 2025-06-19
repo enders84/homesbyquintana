@@ -20,6 +20,8 @@ website:
         href: marketing-insights.qmd
       - text: Market Report
         href: market-report.qmd
+      - text: Market Watch
+        href: https://slyfoxx84.shinyapps.io/realestateapp/
       - text: Market Map
         href: market-map.qmd
       - text: Price Your Home
