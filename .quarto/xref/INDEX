@@ -1,0 +1,44 @@
+{
+  "about.qmd": {
+    "about.html": "ba2b8baa"
+  },
+  "contact.qmd": {
+    "contact.html": "d31e8f0a"
+  },
+  "index.qmd": {
+    "index.html": "6d59cdd4"
+  },
+  "summary.qmd": {
+    "summary.html": "0b513f96"
+  },
+  "templates.qmd": {
+    "templates.html": "bf450ecc"
+  },
+  "market-insights.qmd": {
+    "market-insights.html": "428760f6"
+  },
+  "marketing-tools.qmd": {
+    "marketing-tools.html": "fd70aeab"
+  },
+  "marketing-insights.qmd": {
+    "marketing-insights.html": "792c2c01"
+  },
+  "market-map.qmd": {
+    "market-map.html": "8da5224e"
+  },
+  "market-watch.qmd": {
+    "market-watch.html": "5c0f3e55"
+  },
+  "buyer-seller-insights.qmd": {
+    "buyer-seller-insights.html": "6e0c9ac0"
+  },
+  "data/contact.qmd": {
+    "contact.html": "71431c42"
+  },
+  "market-report.qmd": {
+    "market-report.html": "e6ce14a5"
+  },
+  "thank-you.qmd": {
+    "thank-you.html": "c4437af8"
+  }
+}

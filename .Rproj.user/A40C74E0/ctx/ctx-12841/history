@@ -1,0 +1,36 @@
+DataCarsForTable=DataCars %>% select(mpg, hp)
+#| echo: false
+#| message: false
+#| warning: false
+library(tidyverse)
+#| echo: false
+#| message: false
+#| warning: false
+library(tidyverse)
+library(kableExtra)
+#| echo: false
+#| label: fig-CarsComb-Regres
+#| fig-cap: Relation between Horse Power and MPG
+#| fig-alt: A diagram that shows the relation between horse power and MPG
+library(ggplot2)
+DataCars=mtcars
+DataCarsForTable=DataCars %>% select(mpg, hp)
+#| echo: false
+#| #| label: tbl-CarsComb-Cars
+#| tbl-cap: "Regression"
+#| tbl-alt: "Table showing Regression betwenn mpg and hp"
+Model=lm(mpg~., data = DataCars)
+summary(Model)
+a=summary(Model)
+str(a)
+a=summary(Model)
+str(a)
+a=summary(Model)
+b=a$coefficients
+b
+a=summary(Model)
+str(a$coefficients)
+kable(a$coefficients)
+b=kable(a$coefficients)
+str(b)
+Model$model

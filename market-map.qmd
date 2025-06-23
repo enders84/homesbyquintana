@@ -1,0 +1,72 @@
+---
+title: "Market Map"
+description: ""
+format: html
+execute: 
+  echo: false
+  warning: false
+  message: false
+toc: true
+toc-title: "Quick Navigation"
+toc-location: left
+css: styles.css
+---
+
+## Interactive Market Map
+
+```{r}
+library(readr)
+library(leaflet)
+library(dplyr)
+library(scales)
+
+data <- read_csv("data/redfin_2025-06-10-14-04-13.csv")
+
+# Clean up columns
+data <- data %>%
+  rename(
+    Price = PRICE,
+    Latitude = LATITUDE,
+    Longitude = LONGITUDE,
+    Address = ADDRESS,
+    Beds = BEDS,
+    Baths = BATHS,
+    Sqft = SQUARE.FEET,
+    DOM = DAYS.ON.MARKET
+  ) %>%
+  filter(!is.na(Latitude), !is.na(Longitude))
+
+# Assign color bins for DOM
+data <- data %>%
+  mutate(
+    Color = case_when(
+      DOM <= 14 ~ "#2ecc71",
+      DOM <= 30 ~ "#f1c40f",
+      DOM <= 60 ~ "#e67e22",
+      DOM > 60  ~ "#e74c3c",
+      TRUE ~ "#bdc3c7"
+    )
+  )
+
+# Build the map
+leaflet(data) %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  addCircleMarkers(
+    ~Longitude, ~Latitude,
+    radius = 5,
+    color = ~Color,
+    popup = ~paste0(
+      "<b>", Address, "</b><br>",
+      "Price: $", comma(Price), "<br>",
+      "Beds: ", Beds, " | Baths: ", Baths, "<br>",
+      "Sq Ft: ", comma(Sqft), "<br>",
+      "Days on Market: ", DOM
+    )
+  ) %>%
+  addLegend(
+    position = "bottomright",
+    colors = c("#2ecc71", "#f1c40f", "#e67e22", "#e74c3c"),
+    labels = c("0-14 days", "15-30 days", "31-60 days", "61+ days"),
+    title = "Days on Market"
+  )
+```

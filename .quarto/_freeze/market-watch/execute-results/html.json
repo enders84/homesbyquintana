@@ -1,0 +1,17 @@
+{
+  "hash": "de4fd5f83f09f01e66a483346493789c",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Market Watch\"\nformat: html\nexecute: \n  echo: false\n  warning: false\n  message: false\n---\n\n## 📊 Local Market Summary\n\n\n::: {.cell}\n::: {.cell-output-display}\n`````{=html}\n<table>\n <thead>\n  <tr>\n   <th style=\"text-align:right;\"> Median Price ($) </th>\n   <th style=\"text-align:right;\"> Average Price ($) </th>\n   <th style=\"text-align:right;\"> Median Days on Market </th>\n   <th style=\"text-align:right;\"> Average Days on Market </th>\n   <th style=\"text-align:right;\"> Total Listings </th>\n  </tr>\n </thead>\n<tbody>\n  <tr>\n   <td style=\"text-align:right;\"> 859000 </td>\n   <td style=\"text-align:right;\"> 1224779 </td>\n   <td style=\"text-align:right;\"> 31 </td>\n   <td style=\"text-align:right;\"> 52 </td>\n   <td style=\"text-align:right;\"> 11895 </td>\n  </tr>\n</tbody>\n</table>\n\n`````\n:::\n\n::: {.cell-output-display}\n![](market-watch_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n\n::: {.cell-output-display}\n![](market-watch_files/figure-html/unnamed-chunk-1-2.png){width=672}\n:::\n:::\n\n\n",
+    "supporting": [
+      "market-watch_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

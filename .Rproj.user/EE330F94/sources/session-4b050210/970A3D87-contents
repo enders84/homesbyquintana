@@ -1,0 +1,29 @@
+project:
+  type: book
+
+book:
+  title: "QuartoBookNew"
+  author: "Carsten Lange"
+  date: "10/8/2022"
+  chapters:
+    - index.qmd #do not rename
+    - CarsComb.qmd
+    - CarsElec.qmd
+    - summary.qmd
+    - References.qmd
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: report
+    template-partials: 
+      - "latex/before-body.tex"
+    include-in-header: "latex/preamble.tex"
+    cite-method: natbib
+    bibliography: references.bib
+    toc: false
+    lof: false
+    lot: false
+editor: source
+

@@ -1,0 +1,111 @@
+{
+    "sources": [
+        {
+            "DOI": "10.1093/comjnl/27.2.97",
+            "ISSN": "0010-4620",
+            "URL": "https://doi.org/10.1093/comjnl/27.2.97",
+            "author": [
+                {
+                    "family": "Knuth",
+                    "given": "Donald E."
+                }
+            ],
+            "container-title": "Comput. J.",
+            "id": "knuth84",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        1984
+                    ]
+                ]
+            },
+            "page": "97-111",
+            "publisher": "Oxford University Press, Inc.",
+            "publisher-place": "USA",
+            "title": "Literate programming",
+            "type": "article-journal",
+            "volume": "27"
+        },
+        {
+            "author": [
+                {
+                    "family": "Secinaroa",
+                    "given": "Silvana"
+                },
+                {
+                    "family": "Calandraa",
+                    "given": "Davide"
+                },
+                {
+                    "family": "Lanzalongaa",
+                    "given": "Federico"
+                },
+                {
+                    "family": "Ferraris",
+                    "given": "Alberto"
+                }
+            ],
+            "container-title": "Journal of Business Research",
+            "id": "Secinaroa2022",
+            "issued": {
+                "date-parts": [
+                    [
+                        2002
+                    ]
+                ]
+            },
+            "title": "Electric vehicles’ consumer behaviors: Mapping the field and providing a research agenda",
+            "title-short": "Electric vehicles’ consumer behaviors",
+            "type": "article-journal"
+        },
+        {
+            "URL": "https://arxiv.org/abs/2201.05070",
+            "author": [
+                {
+                    "family": "Lange",
+                    "given": "Carsten"
+                },
+                {
+                    "family": "Lange",
+                    "given": "Jian"
+                }
+            ],
+            "id": "Lange2022",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "keyword": "cs.LG, cs.CY",
+            "title": "Applying machine learning and AI explanations to analyze vaccine hesitancy",
+            "type": "article-journal"
+        },
+        {
+            "URL": "https://www.ebook.de/de/product/41245677/michael_hilgers_wilfried_achenbach_entire_vehicle.html",
+            "author": [
+                {
+                    "family": "Michael Hilgers",
+                    "given": "Wilfried Achenbach"
+                }
+            ],
+            "id": "Hilgers2021",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021
+                    ]
+                ]
+            },
+            "number-of-pages": "52",
+            "publisher": "Springer Berlin Heidelberg",
+            "title": "Entire vehicle",
+            "type": "book"
+        }
+    ],
+    "project_biblios": [
+        "references.bib"
+    ]
+}
