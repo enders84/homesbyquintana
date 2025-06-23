@@ -1,0 +1,81 @@
+---
+title: "Market Reports"
+description: ""
+format: html
+execute: 
+  echo: false
+  warning: false
+  message: false
+toc: true
+toc-title: "Quick Navigation"
+toc-location: left
+css: styles.css
+---
+
+
+## 📝 Understanding This Market Report
+
+📊 **What is the HPI?**  
+The California Housing Price Index (HPI) reflects how home prices have changed over time. Each data point shows the average home price trend for that year across California.  
+
+📈 **Rising prices = Stronger market.**  
+An increasing HPI typically means homes are appreciating in value, demand is strong, and sellers have leverage.  
+
+📉 **Falling prices = Cooling market.**  
+When the HPI declines, it may reflect market corrections, rising interest rates, or changing buyer behavior.
+
+🗺 **How does this help you?**  
+Even though this data reflects state-level averages, Rancho Cucamonga often follows similar trends. Understanding these shifts can help you plan your buying or selling strategy more effectively.
+
+---
+
+## 📊 Price Trend Chart
+
+```{r}
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(scales)
+library(lubridate)
+library(tidyr)
+
+# Load regional HPI data
+hpi_data <- read_csv("data/CAHPI.csv")
+hpi_data$Date <- mdy(hpi_data$Date)
+
+# Group by year and calculate annual averages
+hpi_yearly <- hpi_data %>%
+  mutate(Year = year(Date)) %>%
+  group_by(Year) %>%
+  summarize(
+    CA = mean(CASTHPI, na.rm = TRUE),
+    SF = mean(`San Francisco HPI`, na.rm = TRUE),
+    SD = mean(`San Diego HPI`, na.rm = TRUE),
+    LA = mean(`Los Angeles HPI`, na.rm = TRUE)
+  )
+
+# Reshape into long format for multi-line plotting
+hpi_long <- hpi_yearly %>%
+  pivot_longer(cols = c("CA", "SF", "SD", "LA"),
+               names_to = "Region",
+               values_to = "HPI")
+
+# Plot (NO smooth trend line)
+ggplot(hpi_long, aes(x = Year, y = HPI, color = Region)) +
+  geom_line(size = 1.2) +
+  geom_point(size = 2) +
+  scale_y_continuous(labels = comma) +
+  scale_x_continuous(breaks = pretty(hpi_long$Year, n = 10)) +
+  labs(
+    title = "California & Regional Housing Price Index (HPI)",
+    subtitle = "Annual Averages",
+    x = "Year", y = "HPI Index",
+    caption = "Source: CA HPI Data"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    plot.caption = element_text(size = 9)
+  )
+```

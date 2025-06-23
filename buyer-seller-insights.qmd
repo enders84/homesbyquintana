@@ -1,0 +1,115 @@
+---
+title: "Buyer & Seller Insights"
+description: ""
+format: html
+toc: true
+toc-title: "Quick Navigation"
+toc-location: left
+css: styles.css
+execute: 
+  echo: false
+  warning: false
+  message: false
+---
+
+<div style="text-align:center; margin-bottom: 20px;">
+  <h1 style="font-size: 2.5em;">🏡 Buyer & Seller Insights</h1>
+  <p style="font-size: 1.2em; color: #555;">Your trusted guide to the local real estate market</p>
+</div>
+
+---
+
+## 🛒 For Buyers
+
+::: {.panel-tabset .animated.fadeIn}
+
+### 📊 Current Market Conditions
+
+The local real estate market remains highly competitive, with a median home price of **$859,000** and an average of **29 days on market**. Buyers should be prepared to act quickly when desirable properties become available.
+
+### 💰 Financing Tips
+
+- ✅ Get pre-approved for a mortgage before starting your search.
+- ✅ Shop multiple lenders for competitive rates.
+- ✅ Explore down payment assistance programs available locally.
+
+### 🗓 Typical Timelines
+
+- 📅 Average escrow: **30-45 days**
+- 🔎 Inspections usually scheduled within first 10 days.
+
+### 🎯 Buyer Strategies
+
+- Be flexible on closing timelines.
+- Include a strong earnest money deposit.
+- Partner with a trusted local agent for negotiation strength.
+
+:::
+
+---
+
+## 🏠 For Sellers
+
+::: {.panel-tabset .animated.fadeIn}
+
+### 💵 Pricing Strategy
+
+- 📈 Accurate pricing is critical.
+- ❌ Overpricing leads to stagnation.
+- 📊 Use a professional CMA for proper valuation.
+
+### 🖼 Staging & Presentation
+
+- ✨ Declutter and depersonalize.
+- 📸 High-quality photos dramatically improve online visibility.
+- 🌳 Curb appeal helps drive foot traffic.
+
+### 🗓 Expected Days on Market
+
+- 🕰 Median time: **31 days**
+- 🏃‍♂️ Properly priced homes often sell quickly in first 2-3 weeks.
+
+### 🤝 Negotiation Strategies
+
+- 🤝 Stay responsive to all offers.
+- 💼 Reasonable flexibility improves deal success.
+- 🎁 Consider closing cost contributions when appropriate.
+
+:::
+
+---
+
+## 📞 Schedule Your Free Consultation
+
+```{=html}
+<form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you">
+  <input type="hidden" name="form-name" value="contact" />
+  
+  <!-- Anti-spam honeypot -->
+  <p style="display:none">
+    <label>Don’t fill this out: <input name="bot-field" /></label>
+  </p>
+
+  <div>
+    <label for="name">Name:</label><br>
+    <input type="text" name="name" id="name" required placeholder="Your Name">
+  </div>
+
+  <div>
+    <label for="email">Email:</label><br>
+    <input type="email" name="email" id="email" required placeholder="Your Email">
+  </div>
+
+  <div>
+    <label for="phone">Phone Number:</label><br>
+    <input type="tel" name="phone" id="phone" placeholder="Your Phone Number">
+  </div>
+
+  <div>
+    <label for="message">Message:</label><br>
+    <textarea name="message" id="message" rows="3" required placeholder="How can I help you?"></textarea>
+  </div>
+
+  <button type="submit">Send Message</button>
+</form>
+```

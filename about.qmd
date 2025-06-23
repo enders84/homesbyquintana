@@ -1,0 +1,58 @@
+---
+title: "About Me"
+description: ""
+format: html
+toc: true
+toc-title: "Quick Navigation"
+toc-location: left
+css: styles.css
+---
+
+Hi, I’m Michael Quintana — a California real estate agent with a passion for both the numbers and the neighborhoods.
+
+I combine deep market data with local experience to help my clients make smart, confident decisions — whether it’s finding the perfect home or selling for the best price.
+
+# Education, Credentials & Licenses
+
+🏡 Licensed California Real Estate Agent, serving Rancho Cucamonga & Inland Empire
+
+🏡 Mortgage Loan Officer (License Coming Soon)
+
+🎓 M.S. Applied Economics — Cal Poly Pomona
+
+🎓 B.S. Applied Economics — Cal Poly Pomona
+
+💼 A.S. Real Estate & (Salesperson Certificate)
+
+📚 A.S. Business Administration
+
+📊 A.A. Applied Economics
+
+📖 A.A. History
+
+🌐 A.A. University Studies — Social & Behavioral Sciences Emphasis
+
+🔬 A.A. University Studies — Math & Science Emphasis
+
+💻 A.A. University Studies — Business & Technology Emphasis
+
+
+# My Tools 🧰
+
+📈 Housing market expert with years of experience analyzing real estate trends
+
+[📊 So Cal Housing Price App ](https://slyfoxx84.shinyapps.io/house-prices-advanced-regression-techniques/)
+
+[📈 Marketing Insights](marketing-insights.qmd)
+
+[🔎 Market Watch](https://slyfoxx84.shinyapps.io/realestateapp/)
+
+
+# My Mission 🎯
+
+I believe that every client — whether buying their first home or building a portfolio — deserves trusted advice, clear information, and exceptional service.
+
+My goal is to make your real estate journey seamless, informed, and rewarding.
+
+
+

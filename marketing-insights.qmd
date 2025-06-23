@@ -1,0 +1,58 @@
+---
+title: "Marketing Insights"
+description: ""
+format: html
+toc: true
+toc-title: "Quick Navigation"
+toc-location: left
+css: styles.css
+---
+
+
+*Last updated: June 2025*
+
+## Current Market Trends
+
+- Home prices in Rancho Cucamonga and surrounding areas have risen **5.2%** in the past 12 months.
+- Average days on market: **52.1 days**.
+- Current inventory level: **2.1 months of supply**.
+
+_Source: MLS / Zillow / Redfin data._
+
+## Buyer Insights
+
+- **Best neighborhoods for first-time buyers** → check out Rancho Etiwanda, Victoria Gardens area.
+- **How to compete in a competitive market** → get pre-approved, work with an experienced agent (like me!), be ready to move fast.
+- **Tips for getting pre-approved** → contact a local lender or ask me for recommendations.
+
+## Seller Insights
+
+- **Pricing your home correctly** → proper pricing = more offers, higher final price.
+- **How staging affects sale price** → staged homes sell for up to **6-10% more** on average.
+- **Common mistakes to avoid when selling** → overpricing, poor photos, neglecting minor repairs.
+
+🏡 [Get Your Home Price Estimate](https://slyfoxx84.shinyapps.io/house-prices-advanced-regression-techniques/)
+
+---
+
+<p style="
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.1rem;
+">
+
+  Have a market question?  
+  <a href="mailto:HomesByQuintana@gmail.com?subject=Market%20Insights%20Question" style="
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  ">Ask Me a Question</a>
+
+</p>
+

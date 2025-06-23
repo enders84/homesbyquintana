@@ -1,0 +1,45 @@
+project:
+  type: website
+
+website:
+  google-analytics: "G-JRHMPYF406"
+  favicon: images/logo.png
+  title: "Homes by Quintana"
+  description: "Helping buyers and sellers in Rancho Cucamonga and surrounding areas make smarter real estate decisions with expert market insights and trusted service."
+  sidebar:
+    title: "Homes by Quintana"
+    logo: images/logo.png
+    pinned: false
+    style: floating
+    search: false
+    contents:
+      - text: Home
+        href: index.qmd
+      - text: Marketing Insights
+        href: marketing-insights.qmd
+      - text: Market Report
+        href: market-report.qmd
+      - text: Market Watch and Map
+        href: https://slyfoxx84.shinyapps.io/realestateapp/
+      - text: Price Your Home
+        href: https://slyfoxx84.shinyapps.io/house-prices-advanced-regression-techniques/
+      - text: Buyer & Seller Insights
+        href: buyer-seller-insights.qmd
+      - text: Templates
+        href: templates.qmd
+      - text: About Me
+        href: about.qmd
+      - text: Contact
+        href: contact.qmd
+
+resources:
+  - images
+  - includes/schema.html
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    toc-location: left
+    include-after-body: schema.html
