@@ -14,9 +14,12 @@ description: ""
 ## Send Me a Message
 
 ```{=html}
-<form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you">
-  <input type="hidden" name="form-name" value="contact" />
-  
+<h2>🏠 Get Your FREE Custom Home Value Estimate</h2>
+<p>Curious what your home is worth in today's market? I'll prepare a personalized, no-obligation estimate for you. Just fill out the form below:</p>
+
+<form name="home-value" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you">
+  <input type="hidden" name="form-name" value="home-value" />
+
   <!-- Anti-spam honeypot -->
   <p style="display:none">
     <label>Don’t fill this out: <input name="bot-field" /></label>
@@ -38,11 +41,16 @@ description: ""
   </div>
 
   <div>
-    <label for="message">Message:</label><br>
-    <textarea name="message" id="message" rows="3" required placeholder="How can I help you?"></textarea>
+    <label for="zip">ZIP Code:</label><br>
+    <input type="text" name="zip" id="zip" placeholder="Your ZIP Code">
   </div>
 
-  <button type="submit">Send Message</button>
+  <div>
+    <label for="message">Anything else you'd like me to know?</label><br>
+    <textarea name="message" id="message" rows="3" placeholder="Tell me about your property or timeline"></textarea>
+  </div>
+
+  <button type="submit">Get My Home Value</button>
 </form>
 
 <footer style="background-color: #f8f8f8; padding: 20px; text-align: center; margin-top: 50px;">
