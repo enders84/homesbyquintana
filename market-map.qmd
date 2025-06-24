@@ -1,72 +1,1997 @@
----
-title: "Market Map"
-description: ""
-format: html
-execute: 
-  echo: false
-  warning: false
-  message: false
-toc: true
-toc-title: "Quick Navigation"
-toc-location: left
-css: styles.css
----
 
-## Interactive Market Map
+# My Rancho Cucamonga Market Map
 
-```{r}
-library(readr)
-library(leaflet)
-library(dplyr)
-library(scales)
+This is my Rancho Cucamonga market map powered by Google Maps:
 
-data <- read_csv("data/redfin_2025-06-10-14-04-13.csv")
+<div id="map" style="height: 600px; width: 100%;"></div>
 
-# Clean up columns
-data <- data %>%
-  rename(
-    Price = PRICE,
-    Latitude = LATITUDE,
-    Longitude = LONGITUDE,
-    Address = ADDRESS,
-    Beds = BEDS,
-    Baths = BATHS,
-    Sqft = SQUARE.FEET,
-    DOM = DAYS.ON.MARKET
-  ) %>%
-  filter(!is.na(Latitude), !is.na(Longitude))
+<script>
+const properties = [
+{
+        address: "10554 Cannon Dr",
+        price: "$725,000",
+        beds: 3,
+        baths: 2.5,
+        sqft: 1833,
+        dom: 4,
+        lat: 34.1138491,
+        lng: -117.5742133
+    },
+{
+        address: "10554 Cannon Dr",
+        price: "$725,000",
+        beds: 3,
+        baths: 2.5,
+        sqft: 1833,
+        dom: 4,
+        lat: 34.1138491,
+        lng: -117.5742133
+    },
+{
+        address: "10591 Huxley Dr",
+        price: "$615,000",
+        beds: 3,
+        baths: 2.5,
+        sqft: 1542,
+        dom: 13,
+        lat: 34.1120803,
+        lng: -117.5740544
+    },
+{
+        address: "10655 Lemon Ave #2002",
+        price: "$335,888",
+        beds: 1,
+        baths: 1.0,
+        sqft: 636,
+        dom: 45,
+        lat: 34.1375521,
+        lng: -117.5722936
+    },
+{
+        address: "8438 Cedarwood Ln",
+        price: "$529,000",
+        beds: 2,
+        baths: 2.0,
+        sqft: 1246,
+        dom: 5,
+        lat: 34.104269,
+        lng: -117.6212494
+    },
+{
+        address: "9135 W Rancho Park Cir",
+        price: "$675,000",
+        beds: 4,
+        baths: 3.0,
+        sqft: 2001,
+        dom: 19,
+        lat: 34.0876979,
+        lng: -117.60429
+    },
+{
+        address: "11090 Mountain View Dr #39",
+        price: "$688,000",
+        beds: 2,
+        baths: 2.5,
+        sqft: 1516,
+        dom: 87,
+        lat: 34.1163094,
+        lng: -117.563778
+    },
+{
+        address: "11433 Mountain View Dr #62",
+        price: "$655,999",
+        beds: 3,
+        baths: 2.5,
+        sqft: 1661,
+        dom: 51,
+        lat: 34.1153064,
+        lng: -117.5550772
+    },
+{
+        address: "7200 Comiso Way",
+        price: "$819,000",
+        beds: 3,
+        baths: 2.5,
+        sqft: 1812,
+        dom: 1,
+        lat: 34.1233851,
+        lng: -117.5491125
+    },
+{
+        address: "7200 Comiso Way",
+        price: "$819,000",
+        beds: 3,
+        baths: 2.5,
+        sqft: 1812,
+        dom: 1,
+        lat: 34.1233851,
+        lng: -117.5491125
+    },
+{
+        address: "7192 Carano Pl",
+        price: "$760,000",
+        beds: 3,
+        baths: 2.5,
+        sqft: 1494,
+        dom: 1,
+        lat: 34.1235762,
+        lng: -117.5474143
+    },
+{
+        address: "9757 Balaton St",
+        price: "$699,900",
+        beds: 4,
+        baths: 2.5,
+        sqft: 1492,
+        dom: 1,
+        lat: 34.1362559,
+        lng: -117.5923081
+    },
+{
+        address: "9757 Balaton St",
+        price: "$699,900",
+        beds: 4,
+        baths: 2.5,
+        sqft: 1492,
+        dom: 1,
+        lat: 34.1362559,
+        lng: -117.5923081
+    },
+{
+        address: "7068 Crocus Ct",
+        price: "$625,000",
+        beds: 2,
+        baths: 1.0,
+        sqft: 761,
+        dom: 32,
+        lat: 34.1258713,
+        lng: -117.5342879
+    },
+{
+        address: "12437 Ironbark Dr",
+        price: "$684,900",
+        beds: 3,
+        baths: 2.0,
+        sqft: 949,
+        dom: 35,
+        lat: 34.1251008,
+        lng: -117.5320526
+    },
+{
+        address: "11853 Saybrook Dr",
+        price: "$739,000",
+        beds: 3,
+        baths: 2.5,
+        sqft: 1755,
+        dom: 1,
+        lat: 34.1147985,
+        lng: -117.5465486
+    },
+{
+        address: "11853 Saybrook Dr",
+        price: "$739,000",
+        beds: 3,
+        baths: 2.5,
+        sqft: 1755,
+        dom: 1,
+        lat: 34.1147985,
+        lng: -117.5465486
+    },
+{
+        address: "7253 Comiso Way",
+        price: "$799,900",
+        beds: 3,
+        baths: 2.5,
+        sqft: 1812,
+        dom: 5,
+        lat: 34.1225452,
+        lng: -117.5479065
+    },
+{
+        address: "12387 Blazing Star Ct",
+        price: "$639,888",
+        beds: 3,
+        baths: 2.5,
+        sqft: 1084,
+        dom: 76,
+        lat: 34.1262323,
+        lng: -117.5347195
+    },
+{
+        address: "11259 Corsica Ct",
+        price: "$699,999",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1217,
+        dom: 16,
+        lat: 34.1145981,
+        lng: -117.5592381
+    },
+{
+        address: "12325 Bellflower Ct",
+        price: "$579,900",
+        beds: 2,
+        baths: 1.0,
+        sqft: 849,
+        dom: 14,
+        lat: 34.1292178,
+        lng: -117.5339416
+    },
+{
+        address: "10260 Santa Rosa Ct",
+        price: "$669,000",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1160,
+        dom: 34,
+        lat: 34.0974628,
+        lng: -117.5812792
+    },
+{
+        address: "9522 Harvest Vista Dr",
+        price: "$875,000",
+        beds: 5,
+        baths: 3.0,
+        sqft: 2921,
+        dom: 117,
+        lat: 34.0845152,
+        lng: -117.5974114
+    },
+{
+        address: "11867 Worcester Dr",
+        price: "$838,000",
+        beds: 4,
+        baths: 2.5,
+        sqft: 2005,
+        dom: 5,
+        lat: 34.1164798,
+        lng: -117.5462164
+    },
+{
+        address: "11867 Worcester Dr",
+        price: "$838,000",
+        beds: 4,
+        baths: 2.5,
+        sqft: 2005,
+        dom: 5,
+        lat: 34.1164798,
+        lng: -117.5462164
+    },
+{
+        address: "12701 Farrington St",
+        price: "$632,500",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1080,
+        dom: 3,
+        lat: 34.12395,
+        lng: -117.5278002
+    },
+{
+        address: "12701 Farrington St",
+        price: "$632,500",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1080,
+        dom: 4,
+        lat: 34.12395,
+        lng: -117.5278002
+    },
+{
+        address: "12724 Lucerne Ct",
+        price: "$655,000",
+        beds: 2,
+        baths: 2.0,
+        sqft: 930,
+        dom: 13,
+        lat: 34.1238482,
+        lng: -117.5273785
+    },
+{
+        address: "10991 Countryview Dr",
+        price: "$775,000",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1420,
+        dom: 6,
+        lat: 34.1137337,
+        lng: -117.5652929
+    },
+{
+        address: "12505 Nasturtium Dr",
+        price: "$719,999",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1259,
+        dom: 4,
+        lat: 34.1320755,
+        lng: -117.5315529
+    },
+{
+        address: "12505 Nasturtium Dr",
+        price: "$719,999",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1259,
+        dom: 4,
+        lat: 34.1320755,
+        lng: -117.5315529
+    },
+{
+        address: "13126 Flagstaff Dr",
+        price: "$895,000",
+        beds: 5,
+        baths: 3.0,
+        sqft: 2749,
+        dom: 5,
+        lat: 34.1014803,
+        lng: -117.5182815
+    },
+{
+        address: "13126 Flagstaff Dr",
+        price: "$895,000",
+        beds: 5,
+        baths: 3.0,
+        sqft: 2749,
+        dom: 5,
+        lat: 34.1014803,
+        lng: -117.5182815
+    },
+{
+        address: "6419 Panorama Ct",
+        price: "$778,000",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1302,
+        dom: 3,
+        lat: 34.1374168,
+        lng: -117.5485243
+    },
+{
+        address: "6419 Panorama Ct",
+        price: "$778,000",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1302,
+        dom: 3,
+        lat: 34.1374168,
+        lng: -117.5485243
+    },
+{
+        address: "7509 Woodstream Ct",
+        price: "$850,000",
+        beds: 4,
+        baths: 2.5,
+        sqft: 2302,
+        dom: 5,
+        lat: 34.1170258,
+        lng: -117.5158111
+    },
+{
+        address: "7509 Woodstream Ct",
+        price: "$850,000",
+        beds: 4,
+        baths: 2.5,
+        sqft: 2302,
+        dom: 5,
+        lat: 34.1170258,
+        lng: -117.5158111
+    },
+{
+        address: "11890 Mount Everett Ct",
+        price: "$699,800",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1302,
+        dom: 53,
+        lat: 34.1380995,
+        lng: -117.5455309
+    },
+{
+        address: "10824 Sundance Dr",
+        price: "$772,000",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1488,
+        dom: 5,
+        lat: 34.1190031,
+        lng: -117.5693926
+    },
+{
+        address: "8330 Highridge Pl",
+        price: "$790,000",
+        beds: 4,
+        baths: 3.0,
+        sqft: 1963,
+        dom: 14,
+        lat: 34.1025566,
+        lng: -117.6152316
+    },
+{
+        address: "10141 Orange St",
+        price: "$838,000",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1324,
+        dom: 13,
+        lat: 34.1389248,
+        lng: -117.5839217
+    },
+{
+        address: "11376 Starlight Dr",
+        price: "$1,080,000",
+        beds: 4,
+        baths: 2.5,
+        sqft: 2356,
+        dom: 11,
+        lat: 34.1318275,
+        lng: -117.5570181
+    },
+{
+        address: "8492 Kingman Ct",
+        price: "$895,000",
+        beds: 5,
+        baths: 3.5,
+        sqft: 3028,
+        dom: 47,
+        lat: 34.0993316,
+        lng: -117.5157593
+    },
+{
+        address: "9446 La Grande St",
+        price: "$599,999",
+        beds: 4,
+        baths: 1.0,
+        sqft: 986,
+        dom: 27,
+        lat: 34.1256371,
+        lng: -117.5995808
+    },
+{
+        address: "7522 Calais Ct",
+        price: "$879,900",
+        beds: 4,
+        baths: 2.5,
+        sqft: 1997,
+        dom: 10,
+        lat: 34.1178888,
+        lng: -117.5616112
+    },
+{
+        address: "8672 La Grande St",
+        price: "$775,000",
+        beds: 4,
+        baths: 2.0,
+        sqft: 1388,
+        dom: 16,
+        lat: 34.1259507,
+        lng: -117.6169089
+    },
+{
+        address: "10672 Finch Ave",
+        price: "$888,899",
+        beds: 4,
+        baths: 2.5,
+        sqft: 2258,
+        dom: 1,
+        lat: 34.1356973,
+        lng: -117.5722614
+    },
+{
+        address: "10672 Finch Ave",
+        price: "$888,899",
+        beds: 4,
+        baths: 2.5,
+        sqft: 2258,
+        dom: 1,
+        lat: 34.1356973,
+        lng: -117.5722614
+    },
+{
+        address: "10586 Ring Ave",
+        price: "$875,000",
+        beds: 4,
+        baths: 2.5,
+        sqft: 2258,
+        dom: 6,
+        lat: 34.1331699,
+        lng: -117.5740939
+    },
+{
+        address: "7121 Lion St",
+        price: "$699,900",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1515,
+        dom: 12,
+        lat: 34.1246962,
+        lng: -117.6040051
+    },
+{
+        address: "8255 Cornwall Ave",
+        price: "$645,000",
+        beds: 3,
+        baths: 1.5,
+        sqft: 982,
+        dom: 54,
+        lat: 34.1033696,
+        lng: -117.5201627
+    },
+{
+        address: "13153 Stanton Dr",
+        price: "$989,999",
+        beds: 4,
+        baths: 3.0,
+        sqft: 3286,
+        dom: 18,
+        lat: 34.1032313,
+        lng: -117.5178335
+    },
+{
+        address: "6880 Topaz St",
+        price: "$789,900",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1361,
+        dom: 5,
+        lat: 34.1292487,
+        lng: -117.6183405
+    },
+{
+        address: "7000 Fabriano Pl",
+        price: "$1,098,888",
+        beds: 4,
+        baths: 2.5,
+        sqft: 2751,
+        dom: 11,
+        lat: 34.1267347,
+        lng: -117.5550649
+    },
+{
+        address: "10113 Hemlock St",
+        price: "$675,000",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1152,
+        dom: 12,
+        lat: 34.1123405,
+        lng: -117.5844661
+    },
+{
+        address: "10113 Hemlock St",
+        price: "$699,000",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1152,
+        dom: 12,
+        lat: 34.1123405,
+        lng: -117.5844661
+    },
+{
+        address: "6859 Mango St",
+        price: "$699,000",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1315,
+        dom: 5,
+        lat: 34.1295086,
+        lng: -117.5716834
+    },
+{
+        address: "6859 Mango St",
+        price: "$699,000",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1315,
+        dom: 5,
+        lat: 34.1295086,
+        lng: -117.5716834
+    },
+{
+        address: "9025 La Vine St",
+        price: "$775,000",
+        beds: 4,
+        baths: 2.0,
+        sqft: 1425,
+        dom: 4,
+        lat: 34.1256907,
+        lng: -117.6089485
+    },
+{
+        address: "9025 La Vine St",
+        price: "$775,000",
+        beds: 4,
+        baths: 2.0,
+        sqft: 1425,
+        dom: 4,
+        lat: 34.1256907,
+        lng: -117.6089485
+    },
+{
+        address: "8214 Klusman Ave",
+        price: "$695,000",
+        beds: 3,
+        baths: 1.5,
+        sqft: 1141,
+        dom: 14,
+        lat: 34.1045234,
+        lng: -117.5957705
+    },
+{
+        address: "8971 Hemlock St",
+        price: "$699,900",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1588,
+        dom: 33,
+        lat: 34.1117658,
+        lng: -117.6086386
+    },
+{
+        address: "7562 Dartmouth Ave",
+        price: "$749,900",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1355,
+        dom: 5,
+        lat: 34.1165728,
+        lng: -117.5867053
+    },
+{
+        address: "7669 Granby Ave",
+        price: "$724,888",
+        beds: 4,
+        baths: 2.0,
+        sqft: 1464,
+        dom: 7,
+        lat: 34.1145321,
+        lng: -117.5851123
+    },
+{
+        address: "10414 Hamilton St",
+        price: "$899,000",
+        beds: 4,
+        baths: 2.0,
+        sqft: 2500,
+        dom: 12,
+        lat: 34.1311935,
+        lng: -117.5781855
+    },
+{
+        address: "10288 Effen St",
+        price: "$698,000",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1683,
+        dom: 4,
+        lat: 34.1105351,
+        lng: -117.5806833
+    },
+{
+        address: "10288 Effen St",
+        price: "$698,000",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1683,
+        dom: 4,
+        lat: 34.1105351,
+        lng: -117.5806833
+    },
+{
+        address: "12202 Canyon Meadows Dr",
+        price: "$999,000",
+        beds: 5,
+        baths: 2.5,
+        sqft: 2836,
+        dom: 3,
+        lat: 34.1412461,
+        lng: -117.5388052
+    },
+{
+        address: "12202 Canyon Meadows Dr",
+        price: "$999,000",
+        beds: 5,
+        baths: 2.5,
+        sqft: 2836,
+        dom: 3,
+        lat: 34.1412461,
+        lng: -117.5388052
+    },
+{
+        address: "6765 Jadeite Ave",
+        price: "$800,000",
+        beds: 3,
+        baths: 2.5,
+        sqft: 1650,
+        dom: 12,
+        lat: 34.1314974,
+        lng: -117.5940704
+    },
+{
+        address: "6963 Shamrock Ln",
+        price: "$795,500",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1548,
+        dom: 3,
+        lat: 34.1277366,
+        lng: -117.5772057
+    },
+{
+        address: "6963 Shamrock Ln",
+        price: "$795,500",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1548,
+        dom: 3,
+        lat: 34.1277366,
+        lng: -117.5772057
+    },
+{
+        address: "8156 Cornwall Ave",
+        price: "$600,000",
+        beds: 3,
+        baths: 1.0,
+        sqft: 1288,
+        dom: 8,
+        lat: 34.1053545,
+        lng: -117.5198224
+    },
+{
+        address: "8156 Cornwall Ave",
+        price: "$635,000",
+        beds: 3,
+        baths: 1.0,
+        sqft: 1288,
+        dom: 8,
+        lat: 34.1053545,
+        lng: -117.5198224
+    },
+{
+        address: "6713 Coral Ct",
+        price: "$760,000",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1417,
+        dom: 7,
+        lat: 34.1323855,
+        lng: -117.6126761
+    },
+{
+        address: "7785 Vineyard Ave",
+        price: "$699,000",
+        beds: 3,
+        baths: 1.5,
+        sqft: 1200,
+        dom: 96,
+        lat: 34.1122546,
+        lng: -117.6107788
+    },
+{
+        address: "8452 Hawthorne St",
+        price: "$839,000",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1504,
+        dom: 11,
+        lat: 34.1333634,
+        lng: -117.6218562
+    },
+{
+        address: "8231 Tapia Via Dr",
+        price: "$1,999,900",
+        beds: 12,
+        baths: 6.0,
+        sqft: 5508,
+        dom: 145,
+        lat: 34.1043323,
+        lng: -117.6251589
+    },
+{
+        address: "13042 Larrera St",
+        price: "$879,900",
+        beds: 3,
+        baths: 2.0,
+        sqft: 2092,
+        dom: 1,
+        lat: 34.1294227,
+        lng: -117.520273
+    },
+{
+        address: "12729 Indian Ocean Dr",
+        price: "$1,380,000",
+        beds: 4,
+        baths: 3.5,
+        sqft: 3166,
+        dom: 5,
+        lat: 34.1608687,
+        lng: -117.5271856
+    },
+{
+        address: "6715 Meriwether Ct",
+        price: "$1,128,000",
+        beds: 4,
+        baths: 3.0,
+        sqft: 3425,
+        dom: 4,
+        lat: 34.1324312,
+        lng: -117.5986264
+    },
+{
+        address: "6715 Meriwether Ct",
+        price: "$1,128,000",
+        beds: 4,
+        baths: 3.0,
+        sqft: 3425,
+        dom: 4,
+        lat: 34.1324312,
+        lng: -117.5986264
+    },
+{
+        address: "10215 25th St",
+        price: "$560,000",
+        beds: 2,
+        baths: 1.0,
+        sqft: 612,
+        dom: 64,
+        lat: 34.0941154,
+        lng: -117.5821845
+    },
+{
+        address: "6909 Stanislaus Pl",
+        price: "$1,020,000",
+        beds: 3,
+        baths: 2.5,
+        sqft: 2151,
+        dom: 15,
+        lat: 34.1287268,
+        lng: -117.5677217
+    },
+{
+        address: "9130 Mignonette St",
+        price: "$1,099,000",
+        beds: 4,
+        baths: 3.0,
+        sqft: 2714,
+        dom: 4,
+        lat: 34.130486,
+        lng: -117.6065284
+    },
+{
+        address: "9130 Mignonette St",
+        price: "$1,099,000",
+        beds: 4,
+        baths: 3.0,
+        sqft: 2714,
+        dom: 4,
+        lat: 34.130486,
+        lng: -117.6065284
+    },
+{
+        address: "5939 Etiwanda Ave",
+        price: "$774,900",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1420,
+        dom: 5,
+        lat: 34.1460835,
+        lng: -117.5230982
+    },
+{
+        address: "7145 Sunnyside Pl",
+        price: "$1,238,000",
+        beds: 5,
+        baths: 3.5,
+        sqft: 2811,
+        dom: 3,
+        lat: 34.1237842,
+        lng: -117.5192561
+    },
+{
+        address: "7145 Sunnyside Pl",
+        price: "$1,238,000",
+        beds: 5,
+        baths: 3.5,
+        sqft: 2811,
+        dom: 3,
+        lat: 34.1237842,
+        lng: -117.5192561
+    },
+{
+        address: "12809 Indian Ocean Dr",
+        price: "$1,250,000",
+        beds: 4,
+        baths: 3.5,
+        sqft: 3166,
+        dom: 5,
+        lat: 34.1607894,
+        lng: -117.5253869
+    },
+{
+        address: "12809 Indian Ocean Dr",
+        price: "$1,250,000",
+        beds: 4,
+        baths: 3.5,
+        sqft: 3166,
+        dom: 5,
+        lat: 34.1607894,
+        lng: -117.5253869
+    },
+{
+        address: "7262 Beryl St",
+        price: "$705,000",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1055,
+        dom: 1,
+        lat: 34.1221458,
+        lng: -117.6074202
+    },
+{
+        address: "7262 Beryl St",
+        price: "$705,000",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1055,
+        dom: 1,
+        lat: 34.1221458,
+        lng: -117.6074202
+    },
+{
+        address: "12163 Keenland Dr",
+        price: "$1,500,000",
+        beds: 5,
+        baths: 3.5,
+        sqft: 4612,
+        dom: 3,
+        lat: 34.1468217,
+        lng: -117.5397727
+    },
+{
+        address: "12163 Keenland Dr",
+        price: "$1,500,000",
+        beds: 5,
+        baths: 3.5,
+        sqft: 4612,
+        dom: 3,
+        lat: 34.1468217,
+        lng: -117.5397727
+    },
+{
+        address: "12680 Encino Ct",
+        price: "$1,674,888",
+        beds: 4,
+        baths: 4.5,
+        sqft: 4610,
+        dom: 2,
+        lat: 34.1628474,
+        lng: -117.5283254
+    },
+{
+        address: "12680 Encino Ct",
+        price: "$1,674,888",
+        beds: 4,
+        baths: 4.5,
+        sqft: 4610,
+        dom: 2,
+        lat: 34.1628474,
+        lng: -117.5283254
+    },
+{
+        address: "6114 Sard St",
+        price: "$1,099,900",
+        beds: 4,
+        baths: 3.0,
+        sqft: 2816,
+        dom: 14,
+        lat: 34.143444,
+        lng: -117.6226722
+    },
+{
+        address: "14181 Vai Brothers Dr",
+        price: "$1,399,000",
+        beds: 4,
+        baths: 3.0,
+        sqft: 3246,
+        dom: 2,
+        lat: 34.1612951,
+        lng: -117.4952673
+    },
+{
+        address: "14181 Vai Brothers Dr",
+        price: "$1,399,000",
+        beds: 4,
+        baths: 3.0,
+        sqft: 3246,
+        dom: 2,
+        lat: 34.1612951,
+        lng: -117.4952673
+    },
+{
+        address: "8715 Predera Ct",
+        price: "$1,399,000",
+        beds: 6,
+        baths: 3.5,
+        sqft: 3689,
+        dom: 194,
+        lat: 34.1090808,
+        lng: -117.615833
+    },
+{
+        address: "13408 Silver Sky Rd",
+        price: "$1,890,000",
+        beds: 5,
+        baths: 4.5,
+        sqft: 4766,
+        dom: 73,
+        lat: 34.1420836,
+        lng: -117.5118241
+    },
+{
+        address: "5622 Revere Ave",
+        price: "$1,249,000",
+        beds: 4,
+        baths: 3.0,
+        sqft: 2389,
+        dom: 20,
+        lat: 34.1521147,
+        lng: -117.5794979
+    },
+{
+        address: "5234 Della Ave",
+        price: "$1,200,000",
+        beds: 4,
+        baths: 3.0,
+        sqft: 2589,
+        dom: 56,
+        lat: 34.1597094,
+        lng: -117.6311436
+    },
+{
+        address: "6108 Indigo Ave",
+        price: "$1,195,000",
+        beds: 4,
+        baths: 3.0,
+        sqft: 2602,
+        dom: 7,
+        lat: 34.1434002,
+        lng: -117.6323972
+    },
+{
+        address: "5338 Falling Tree Ln",
+        price: "$1,275,000",
+        beds: 3,
+        baths: 2.0,
+        sqft: 2273,
+        dom: 32,
+        lat: 34.157887,
+        lng: -117.6069306
+    },
+{
+        address: "9857 Coca St",
+        price: "$1,200,000",
+        beds: 4,
+        baths: 3.0,
+        sqft: 2142,
+        dom: 11,
+        lat: 34.1449582,
+        lng: -117.5894304
+    },
+{
+        address: "7906 Appaloosa Ct",
+        price: "$1,179,000",
+        beds: 4,
+        baths: 3.0,
+        sqft: 2646,
+        dom: 14,
+        lat: 34.1585441,
+        lng: -117.6341156
+    },
+{
+        address: "4976 Huntswood Pl",
+        price: "$1,445,000",
+        beds: 4,
+        baths: 2.5,
+        sqft: 3142,
+        dom: 27,
+        lat: 34.1636155,
+        lng: -117.5908357
+    },
+{
+        address: "6087 Aquamarine Ave",
+        price: "$1,180,000",
+        beds: 4,
+        baths: 3.0,
+        sqft: 2209,
+        dom: 55,
+        lat: 34.1439508,
+        lng: -117.6259389
+    },
+{
+        address: "6188 Indigo Ave",
+        price: "$1,128,000",
+        beds: 4,
+        baths: 2.0,
+        sqft: 1985,
+        dom: 67,
+        lat: 34.1419314,
+        lng: -117.631515
+    },
+{
+        address: "8826 Justify Dr",
+        price: "$2,250,000",
+        beds: 5,
+        baths: 5.5,
+        sqft: 4535,
+        dom: 34,
+        lat: 34.1582844,
+        lng: -117.6136042
+    },
+{
+        address: "7950 Gardenia",
+        price: "$1,150,000",
+        beds: 4,
+        baths: 2.0,
+        sqft: 1862,
+        dom: 18,
+        lat: 34.1473957,
+        lng: -117.6329743
+    },
+{
+        address: "9527 Manzanita Dr",
+        price: "$1,199,999",
+        beds: 4,
+        baths: 3.5,
+        sqft: 2863,
+        dom: 59,
+        lat: 34.1485888,
+        lng: -117.5978438
+    },
+{
+        address: "5848 Burlwood Ct",
+        price: "$1,399,000",
+        beds: 4,
+        baths: 2.5,
+        sqft: 3015,
+        dom: 102,
+        lat: 34.1478441,
+        lng: -117.6109924
+    },
+{
+        address: "5848 Burlwood Ct",
+        price: "$1,399,000",
+        beds: 4,
+        baths: 2.5,
+        sqft: 3015,
+        dom: 102,
+        lat: 34.1478441,
+        lng: -117.6109924
+    },
+{
+        address: "9600 Carrari Ct",
+        price: "$1,195,000",
+        beds: 5,
+        baths: 3.0,
+        sqft: 2852,
+        dom: 82,
+        lat: 34.1593661,
+        lng: -117.5953253
+    },
+{
+        address: "8010 Rosebud St",
+        price: "$1,239,900",
+        beds: 3,
+        baths: 3.0,
+        sqft: 2416,
+        dom: 130,
+        lat: 34.146058,
+        lng: -117.6316337
+    },
+{
+        address: "8093 Banyan St",
+        price: "$1,538,000",
+        beds: 4,
+        baths: 2.5,
+        sqft: 2739,
+        dom: 13,
+        lat: 34.143398,
+        lng: -117.6300508
+    },
+{
+        address: "6087 Carol Ave",
+        price: "$1,150,000",
+        beds: 4,
+        baths: 2.0,
+        sqft: 1928,
+        dom: 23,
+        lat: 34.1439011,
+        lng: -117.6288708
+    },
+{
+        address: "5156 Branding Iron Pl",
+        price: "$2,500,000",
+        beds: 6,
+        baths: 5.5,
+        sqft: 5529,
+        dom: 1,
+        lat: 34.1599687,
+        lng: -117.5055688
+    },
+{
+        address: "5156 Branding Iron Pl",
+        price: "$2,500,000",
+        beds: 6,
+        baths: 5.5,
+        sqft: 5529,
+        dom: 1,
+        lat: 34.1599687,
+        lng: -117.5055688
+    },
+{
+        address: "11090 Hiddentrail Dr",
+        price: "$2,999,000",
+        beds: 5,
+        baths: 5.5,
+        sqft: 5361,
+        dom: 137,
+        lat: 34.164732,
+        lng: -117.563062
+    },
+{
+        address: "4950 Paddock Pl",
+        price: "$2,088,000",
+        beds: 5,
+        baths: 5.5,
+        sqft: 5448,
+        dom: 118,
+        lat: 34.1639564,
+        lng: -117.5640073
+    },
+{
+        address: "8309 Hillside Rd",
+        price: "$1,300,000",
+        beds: 3,
+        baths: 3.0,
+        sqft: 3928,
+        dom: 67,
+        lat: 34.1545743,
+        lng: -117.6251374
+    },
+{
+        address: "5088 Mayberry Ave",
+        price: "$1,380,000",
+        beds: 5,
+        baths: 3.5,
+        sqft: 3253,
+        dom: 100,
+        lat: 34.1615542,
+        lng: -117.5802658
+    },
+{
+        address: "5088 Mayberry Ave",
+        price: "$1,380,000",
+        beds: 5,
+        baths: 3.5,
+        sqft: 3253,
+        dom: 100,
+        lat: 34.1615542,
+        lng: -117.5802658
+    },
+{
+        address: "8729 Hillside Rd",
+        price: "$1,150,000",
+        beds: 4,
+        baths: 3.0,
+        sqft: 2000,
+        dom: 24,
+        lat: 34.1546383,
+        lng: -117.6158298
+    },
+{
+        address: "8729 Hillside Rd",
+        price: "$1,150,000",
+        beds: 4,
+        baths: 3.0,
+        sqft: 2000,
+        dom: 24,
+        lat: 34.1546383,
+        lng: -117.6158298
+    },
+{
+        address: "10139 Sun Valley Dr",
+        price: "$1,119,000",
+        beds: 4,
+        baths: 3.0,
+        sqft: 2802,
+        dom: 26,
+        lat: 34.1639077,
+        lng: -117.583122
+    },
+{
+        address: "10139 Sun Valley Dr",
+        price: "$1,119,000",
+        beds: 4,
+        baths: 3.0,
+        sqft: 2802,
+        dom: 26,
+        lat: 34.1639077,
+        lng: -117.583122
+    },
+{
+        address: "8798 Justify Dr",
+        price: "$2,599,999",
+        beds: 5,
+        baths: 5.5,
+        sqft: 5157,
+        dom: 35,
+        lat: 34.1582657,
+        lng: -117.6139577
+    },
+{
+        address: "8798 Justify Dr",
+        price: "$2,599,999",
+        beds: 5,
+        baths: 5.5,
+        sqft: 5157,
+        dom: 35,
+        lat: 34.1582657,
+        lng: -117.6139577
+    },
+{
+        address: "8911 Mustang Rd",
+        price: "$1,695,000",
+        beds: 5,
+        baths: 4.5,
+        sqft: 3796,
+        dom: 5,
+        lat: 34.1497954,
+        lng: -117.6116071
+    },
+{
+        address: "8911 Mustang Rd",
+        price: "$1,695,000",
+        beds: 5,
+        baths: 4.5,
+        sqft: 3796,
+        dom: 5,
+        lat: 34.1497954,
+        lng: -117.6116071
+    },
+{
+        address: "8911 Mustang Rd",
+        price: "$1,695,000",
+        beds: 5,
+        baths: 4.5,
+        sqft: 3796,
+        dom: 5,
+        lat: 34.1497954,
+        lng: -117.6116071
+    },
+{
+        address: "9655 Norbrook Dr",
+        price: "$2,899,000",
+        beds: 6,
+        baths: 6.5,
+        sqft: 5809,
+        dom: 119,
+        lat: 34.156207,
+        lng: -117.594202
+    },
+{
+        address: "9655 Norbrook Dr",
+        price: "$2,899,000",
+        beds: 6,
+        baths: 6.5,
+        sqft: 5809,
+        dom: 119,
+        lat: 34.156207,
+        lng: -117.594202
+    },
+{
+        address: "8967 Citation Ct",
+        price: "$1,399,900",
+        beds: 3,
+        baths: 3.0,
+        sqft: 2419,
+        dom: 7,
+        lat: 34.1597997,
+        lng: -117.6105237
+    },
+{
+        address: "8967 Citation Ct",
+        price: "$1,399,900",
+        beds: 3,
+        baths: 3.0,
+        sqft: 2419,
+        dom: 7,
+        lat: 34.1597997,
+        lng: -117.6105237
+    },
+{
+        address: "5218 Rocky Mountain Pl",
+        price: "$1,255,000",
+        beds: 4,
+        baths: 3.0,
+        sqft: 2416,
+        dom: 20,
+        lat: 34.1591804,
+        lng: -117.5817602
+    },
+{
+        address: "5218 Rocky Mountain Pl",
+        price: "$1,255,000",
+        beds: 4,
+        baths: 3.0,
+        sqft: 2416,
+        dom: 20,
+        lat: 34.1591804,
+        lng: -117.5817602
+    },
+{
+        address: "6275 Archibald Ave",
+        price: "$899,000",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1717,
+        dom: 26,
+        lat: 34.1401214,
+        lng: -117.5930786
+    },
+{
+        address: "6275 Archibald Ave",
+        price: "$899,000",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1717,
+        dom: 26,
+        lat: 34.1401214,
+        lng: -117.5930786
+    },
+{
+        address: "9077 Reales St",
+        price: "$2,988,800",
+        beds: 5,
+        baths: 4.0,
+        sqft: 4035,
+        dom: 83,
+        lat: 34.1639008,
+        lng: -117.6079864
+    },
+{
+        address: "9077 Reales St",
+        price: "$2,988,800",
+        beds: 5,
+        baths: 4.0,
+        sqft: 4035,
+        dom: 83,
+        lat: 34.1639008,
+        lng: -117.6079864
+    },
+{
+        address: "13691 Cobalt Ct",
+        price: "$1,675,000",
+        beds: 5,
+        baths: 4.5,
+        sqft: 4044,
+        dom: 16,
+        lat: 34.1407096,
+        lng: -117.5062574
+    },
+{
+        address: "13060 Carnesi Dr",
+        price: "$2,290,000",
+        beds: 5,
+        baths: 5.5,
+        sqft: 4804,
+        dom: 40,
+        lat: 34.1323752,
+        lng: -117.5200097
+    },
+{
+        address: "13060 Carnesi Dr",
+        price: "$2,290,000",
+        beds: 5,
+        baths: 5.5,
+        sqft: 4804,
+        dom: 40,
+        lat: 34.1323752,
+        lng: -117.5200097
+    },
+{
+        address: "6128 Oakridge Ct",
+        price: "$2,125,000",
+        beds: 6,
+        baths: 6.5,
+        sqft: 5709,
+        dom: 31,
+        lat: 34.1425567,
+        lng: -117.5296164
+    },
+{
+        address: "6128 Oakridge Ct",
+        price: "$2,125,000",
+        beds: 6,
+        baths: 6.5,
+        sqft: 5709,
+        dom: 31,
+        lat: 34.1425567,
+        lng: -117.5296164
+    },
+{
+        address: "13123 Carriage Trail Ct",
+        price: "$2,990,000",
+        beds: 6,
+        baths: 5.5,
+        sqft: 6690,
+        dom: 267,
+        lat: 34.1493637,
+        lng: -117.5186914
+    },
+{
+        address: "13123 Carriage Trail Ct",
+        price: "$2,990,000",
+        beds: 6,
+        baths: 5.5,
+        sqft: 6690,
+        dom: 267,
+        lat: 34.1493637,
+        lng: -117.5186914
+    },
+{
+        address: "4990 Padre Ave",
+        price: "$1,580,000",
+        beds: 7,
+        baths: 5.0,
+        sqft: 4374,
+        dom: 41,
+        lat: 34.1634411,
+        lng: -117.4980003
+    },
+{
+        address: "4990 Padre Ave",
+        price: "$1,580,000",
+        beds: 7,
+        baths: 5.0,
+        sqft: 4374,
+        dom: 41,
+        lat: 34.1634411,
+        lng: -117.4980003
+    },
+{
+        address: "12932 Carnesi Dr",
+        price: "$2,499,000",
+        beds: 5,
+        baths: 5.0,
+        sqft: 4445,
+        dom: 38,
+        lat: 34.1324103,
+        lng: -117.5228075
+    },
+{
+        address: "12932 Carnesi Dr",
+        price: "$2,499,000",
+        beds: 5,
+        baths: 5.0,
+        sqft: 4445,
+        dom: 38,
+        lat: 34.1324103,
+        lng: -117.5228075
+    },
+{
+        address: "5081 Gateway Rd",
+        price: "$2,300,000",
+        beds: 4,
+        baths: 4.5,
+        sqft: 4300,
+        dom: 34,
+        lat: 34.1622884,
+        lng: -117.6154597
+    },
+{
+        address: "5081 Gateway Rd",
+        price: "$2,300,000",
+        beds: 4,
+        baths: 4.5,
+        sqft: 4300,
+        dom: 34,
+        lat: 34.1622884,
+        lng: -117.6154597
+    },
+{
+        address: "13063 Norcia Dr",
+        price: "$2,479,000",
+        beds: 6,
+        baths: 5.5,
+        sqft: 5846,
+        dom: 151,
+        lat: 34.1348885,
+        lng: -117.5198621
+    },
+{
+        address: "13063 Norcia Dr",
+        price: "$2,479,000",
+        beds: 6,
+        baths: 5.5,
+        sqft: 5846,
+        dom: 151,
+        lat: 34.1348885,
+        lng: -117.5198621
+    },
+{
+        address: "7236 Hellman Ave",
+        price: "$899,000",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1635,
+        dom: 14,
+        lat: 34.122628,
+        lng: -117.603024
+    },
+{
+        address: "7236 Hellman Ave",
+        price: "$899,000",
+        beds: 3,
+        baths: 2.0,
+        sqft: 1635,
+        dom: 14,
+        lat: 34.122628,
+        lng: -117.603024
+    },
+{
+        address: "6318 Echo Mtn",
+        price: "$2,375,000",
+        beds: 5,
+        baths: 5.5,
+        sqft: 4922,
+        dom: 29,
+        lat: 34.138591,
+        lng: -117.505474
+    },
+{
+        address: "6318 Echo Mtn",
+        price: "$2,375,000",
+        beds: 5,
+        baths: 5.5,
+        sqft: 4922,
+        dom: 29,
+        lat: 34.138591,
+        lng: -117.505474
+    },
+{
+        address: "5416 Trabuco Ct",
+        price: "$2,200,000",
+        beds: 6,
+        baths: 5.5,
+        sqft: 4671,
+        dom: 38,
+        lat: 34.1556734,
+        lng: -117.5949664
+    },
+{
+        address: "5416 Trabuco Ct",
+        price: "$2,200,000",
+        beds: 6,
+        baths: 5.5,
+        sqft: 4671,
+        dom: 38,
+        lat: 34.1556734,
+        lng: -117.5949664
+    },
+{
+        address: "7064 Isle Ct",
+        price: "$1,560,000",
+        beds: 5,
+        baths: 3.0,
+        sqft: 3333,
+        dom: 18,
+        lat: 34.1256613,
+        lng: -117.525367
+    },
+{
+        address: "12794 Windstar Dr",
+        price: "$2,499,000",
+        beds: 5,
+        baths: 5.5,
+        sqft: 5000,
+        dom: 110,
+        lat: 34.140992,
+        lng: -117.5257591
+    },
+{
+        address: "12794 Windstar Dr",
+        price: "$2,499,000",
+        beds: 5,
+        baths: 5.5,
+        sqft: 5000,
+        dom: 110,
+        lat: 34.140992,
+        lng: -117.5257591
+    },
+{
+        address: "6822 Foxtail Ct",
+        price: "$2,098,000",
+        beds: 4,
+        baths: 2.5,
+        sqft: 2860,
+        dom: 82,
+        lat: 34.1297729,
+        lng: -117.5254566
+    },
+{
+        address: "6822 Foxtail Ct",
+        price: "$2,098,000",
+        beds: 4,
+        baths: 2.5,
+        sqft: 2860,
+        dom: 82,
+        lat: 34.1297729,
+        lng: -117.5254566
+    },
+{
+        address: "8790 King Ranch Rd",
+        price: "$2,388,000",
+        beds: 4,
+        baths: 3.5,
+        sqft: 5973,
+        dom: 3,
+        lat: 34.1642274,
+        lng: -117.614623
+    },
+{
+        address: "8790 King Ranch Rd",
+        price: "$2,388,000",
+        beds: 4,
+        baths: 3.5,
+        sqft: 5973,
+        dom: 3,
+        lat: 34.1642274,
+        lng: -117.614623
+    },
+{
+        address: "8790 King Ranch Rd",
+        price: "$2,388,000",
+        beds: 4,
+        baths: 3.5,
+        sqft: 5973,
+        dom: 3,
+        lat: 34.1642274,
+        lng: -117.614623
+    },
+{
+        address: "9979 Timbermist Ct",
+        price: "$1,238,000",
+        beds: 4,
+        baths: 2.5,
+        sqft: 2173,
+        dom: 24,
+        lat: 34.1478959,
+        lng: -117.5873473
+    },
+{
+        address: "9979 Timbermist Ct",
+        price: "$1,238,000",
+        beds: 4,
+        baths: 2.5,
+        sqft: 2173,
+        dom: 24,
+        lat: 34.1478959,
+        lng: -117.5873473
+    },
+{
+        address: "10920 Beechwood Dr",
+        price: "$2,199,000",
+        beds: 5,
+        baths: 3.5,
+        sqft: 4475,
+        dom: 1,
+        lat: 34.1526009,
+        lng: -117.5663983
+    },
+{
+        address: "10920 Beechwood Dr",
+        price: "$2,199,000",
+        beds: 5,
+        baths: 3.5,
+        sqft: 4475,
+        dom: 1,
+        lat: 34.1526009,
+        lng: -117.5663983
+    },
+{
+        address: "10920 Beechwood Dr",
+        price: "$2,199,000",
+        beds: 5,
+        baths: 3.5,
+        sqft: 4475,
+        dom: 1,
+        lat: 34.1526009,
+        lng: -117.5663983
+    },
+{
+        address: "11028 Wilson Ave",
+        price: "$1,400,000",
+        beds: 4,
+        baths: 2.0,
+        sqft: 2655,
+        dom: 3,
+        lat: 34.1509359,
+        lng: -117.5642708
+    },
+{
+        address: "11028 Wilson Ave",
+        price: "$1,400,000",
+        beds: 4,
+        baths: 2.0,
+        sqft: 2655,
+        dom: 3,
+        lat: 34.1509359,
+        lng: -117.5642708
+    },
+{
+        address: "11028 Wilson Ave",
+        price: "$1,400,000",
+        beds: 4,
+        baths: 2.0,
+        sqft: 2655,
+        dom: 3,
+        lat: 34.1509359,
+        lng: -117.5642708
+    },
+{
+        address: "9827 Flying Mane Ln",
+        price: "$2,699,000",
+        beds: 7,
+        baths: 6.0,
+        sqft: 6319,
+        dom: 99,
+        lat: 34.154622,
+        lng: -117.590422
+    },
+{
+        address: "9827 Flying Mane Ln",
+        price: "$2,699,000",
+        beds: 7,
+        baths: 6.0,
+        sqft: 6319,
+        dom: 99,
+        lat: 34.154622,
+        lng: -117.590422
+    },
+{
+        address: "5528 Morning Star Dr",
+        price: "$2,150,000",
+        beds: 4,
+        baths: 4.5,
+        sqft: 4233,
+        dom: 45,
+        lat: 34.1547842,
+        lng: -117.5699806
+    },
+{
+        address: "5528 Morning Star Dr",
+        price: "$2,150,000",
+        beds: 4,
+        baths: 4.5,
+        sqft: 4233,
+        dom: 45,
+        lat: 34.1547842,
+        lng: -117.5699806
+    },
+{
+        address: "5291 Carnelian St",
+        price: "$1,550,000",
+        beds: 7,
+        baths: 5.5,
+        sqft: 3649,
+        dom: 47,
+        lat: 34.1596474,
+        lng: -117.6162212
+    },
+{
+        address: "5291 Carnelian St",
+        price: "$1,550,000",
+        beds: 7,
+        baths: 5.5,
+        sqft: 3649,
+        dom: 47,
+        lat: 34.1596474,
+        lng: -117.6162212
+    },
+{
+        address: "10123 Finch Ave",
+        price: "$1,845,000",
+        beds: 9,
+        baths: 5.0,
+        sqft: 4961,
+        dom: 40,
+        lat: 34.1349031,
+        lng: -117.5843898
+    },
+{
+        address: "10123 Finch Ave",
+        price: "$1,845,000",
+        beds: 9,
+        baths: 5.0,
+        sqft: 4961,
+        dom: 40,
+        lat: 34.1349031,
+        lng: -117.5843898
+    },
+{
+        address: "6108 Indigo Ave",
+        price: "$1,195,000",
+        beds: 4,
+        baths: 3.0,
+        sqft: 2602,
+        dom: 12,
+        lat: 34.1434002,
+        lng: -117.6323972
+    },
+{
+        address: "8010 Rosebud St",
+        price: "$1,239,900",
+        beds: 3,
+        baths: 3.0,
+        sqft: 2416,
+        dom: 135,
+        lat: 34.146058,
+        lng: -117.6316337
+    },
+{
+        address: "8093 Banyan St",
+        price: "$1,538,000",
+        beds: 4,
+        baths: 2.5,
+        sqft: 2739,
+        dom: 18,
+        lat: 34.143398,
+        lng: -117.6300508
+    }
+];
+</script>
 
-# Assign color bins for DOM
-data <- data %>%
-  mutate(
-    Color = case_when(
-      DOM <= 14 ~ "#2ecc71",
-      DOM <= 30 ~ "#f1c40f",
-      DOM <= 60 ~ "#e67e22",
-      DOM > 60  ~ "#e74c3c",
-      TRUE ~ "#bdc3c7"
-    )
-  )
+<script>
+function initMap() {
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 12,
+    center: { lat: 34.1064, lng: -117.5931 }
+  });
 
-# Build the map
-leaflet(data) %>%
-  addProviderTiles(providers$CartoDB.Positron) %>%
-  addCircleMarkers(
-    ~Longitude, ~Latitude,
-    radius = 5,
-    color = ~Color,
-    popup = ~paste0(
-      "<b>", Address, "</b><br>",
-      "Price: $", comma(Price), "<br>",
-      "Beds: ", Beds, " | Baths: ", Baths, "<br>",
-      "Sq Ft: ", comma(Sqft), "<br>",
-      "Days on Market: ", DOM
-    )
-  ) %>%
-  addLegend(
-    position = "bottomright",
-    colors = c("#2ecc71", "#f1c40f", "#e67e22", "#e74c3c"),
-    labels = c("0-14 days", "15-30 days", "31-60 days", "61+ days"),
-    title = "Days on Market"
-  )
-```
+  properties.forEach(function(property) {
+    const marker = new google.maps.Marker({
+      position: { lat: property.lat, lng: property.lng },
+      map: map,
+      title: property.address
+    });
+
+    const infoContent = `
+      <b>${property.address}</b><br>
+      Price: ${property.price}<br>
+      Beds: ${property.beds} | Baths: ${property.baths}<br>
+      Sqft: ${property.sqft}<br>
+      DOM: ${property.dom} days
+    `;
+
+    const infowindow = new google.maps.InfoWindow({
+      content: infoContent
+    });
+
+    marker.addListener("click", function() {
+      infowindow.open(map, marker);
+    });
+  });
+}
+</script>
+
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDv8eC55AvL4UZnGwBOIF_aMS4jdY4eGA"></script>
+
+<script>
+function waitForGoogleMaps() {
+  if (typeof google !== 'undefined' && typeof google.maps !== 'undefined') {
+    initMap();
+  } else {
+    setTimeout(waitForGoogleMaps, 100);
+  }
+}
+waitForGoogleMaps();
+</script>
