@@ -12,6 +12,22 @@ toc-location: left
 css: styles.css
 ---
 
+```{=html}
+<!-- HERO BANNER -->
+<div style="position:relative; background:url('images/Rancho.jpeg') center/cover; height:260px; border-radius:12px; margin-bottom:20px; overflow:hidden;">
+
+  <!-- Overlay -->
+  <div style="position:absolute; inset:0; background:rgba(0,0,0,0.45);"></div>
+
+  <!-- Text -->
+  <h1 style="position:relative; color:#fff; margin:0; padding:0 10px; text-align:center; line-height:260px; text-shadow:2px 2px 8px rgba(0,0,0,0.9);">
+    Inland Empire Market Reports
+  </h1>
+</div>
+
+```
+
+
 
 ## 📝 Understanding This Market Report
 
@@ -32,52 +48,100 @@ Even though this data reflects state-level averages, Rancho Cucamonga often foll
 ## 📊 Price Trend Chart
 
 ```{r}
-library(readr)
-library(dplyr)
-library(ggplot2)
-library(scales)
-library(lubridate)
-library(tidyr)
+# ---- Setup ----
+suppressPackageStartupMessages({
+  library(readr)
+  library(dplyr)
+  library(ggplot2)
+  library(scales)
+  library(lubridate)
+  library(tidyr)
+})
 
-# Load regional HPI data
-hpi_data <- read_csv("data/CAHPI.csv")
-hpi_data$Date <- mdy(hpi_data$Date)
+csv_path <- "data/CAHPI.csv"
 
-# Group by year and calculate annual averages
-hpi_yearly <- hpi_data %>%
-  mutate(Year = year(Date)) %>%
-  group_by(Year) %>%
-  summarize(
-    CA = mean(CASTHPI, na.rm = TRUE),
-    SF = mean(`San Francisco HPI`, na.rm = TRUE),
-    SD = mean(`San Diego HPI`, na.rm = TRUE),
-    LA = mean(`Los Angeles HPI`, na.rm = TRUE)
-  )
+if (!file.exists(csv_path)) {
+  cat("❗ **Data file not found:** `data/CAHPI.csv`\n\n",
+      "• Make sure the file is in the `data/` folder of your project.\n",
+      "• Expected columns include a `Date` column plus region HPI columns like:\n",
+      "  `CASTHPI`, `San Francisco HPI`, `San Diego HPI`, `Los Angeles HPI`.\n", sep = "")
+} else {
+  hpi_data <- read_csv(csv_path, show_col_types = FALSE)
 
-# Reshape into long format for multi-line plotting
-hpi_long <- hpi_yearly %>%
-  pivot_longer(cols = c("CA", "SF", "SD", "LA"),
-               names_to = "Region",
-               values_to = "HPI")
+  # Try to locate columns by flexible name matching
+  find_col <- function(patterns, nm = names(hpi_data)) {
+    idx <- lapply(patterns, function(p) grep(p, nm, ignore.case = TRUE, value = TRUE))
+    unique(unlist(idx))[1]
+  }
 
-# Plot (NO smooth trend line)
-ggplot(hpi_long, aes(x = Year, y = HPI, color = Region)) +
-  geom_line(size = 1.2) +
-  geom_point(size = 2) +
-  scale_y_continuous(labels = comma) +
-  scale_x_continuous(breaks = pretty(hpi_long$Year, n = 10)) +
-  labs(
-    title = "California & Regional Housing Price Index (HPI)",
-    subtitle = "Annual Averages",
-    x = "Year", y = "HPI Index",
-    caption = "Source: CA HPI Data"
-  ) +
-  theme_minimal(base_size = 15) +
-  theme(
-    plot.title = element_text(face = "bold", hjust = 0.5),
-    axis.text.x = element_text(angle = 45, hjust = 1),
-    plot.caption = element_text(size = 9)
-  )
+  # Core columns (flexible matching for various header spellings)
+  date_col <- find_col(c("^date$"))
+  ca_col   <- find_col(c("^casthpi$", "california.*hpi", "^ca.*hpi$"))
+  sf_col   <- find_col(c("san\\s*francisco.*hpi", "^sf.*hpi$"))
+  sd_col   <- find_col(c("san\\s*diego.*hpi", "^sd.*hpi$"))
+  la_col   <- find_col(c("los\\s*angeles.*hpi", "^la.*hpi$"))
+
+  # Minimal required: Date + CA
+  if (is.na(date_col) || is.na(ca_col)) {
+    cat("❗ **Required columns missing.**\n\n",
+        "• I need at least a `Date` column and a California HPI column (e.g., `CASTHPI`).\n",
+        "• Found columns: ", paste(names(hpi_data), collapse = ", "), "\n", sep = "")
+  } else {
+    # Parse date
+    hpi_data[[date_col]] <- suppressWarnings(mdy(hpi_data[[date_col]]))
+    if (all(is.na(hpi_data[[date_col]]))) {
+      # Fallback: try ymd
+      hpi_data[[date_col]] <- suppressWarnings(ymd(hpi_data[[date_col]]))
+    }
+
+    # Build a list of regions that exist
+    region_map <- list(
+      CA = ca_col,
+      SF = sf_col,
+      SD = sd_col,
+      LA = la_col
+    )
+    region_map <- region_map[!vapply(region_map, is.na, logical(1))]
+
+    # Yearly averages
+    hpi_yearly <- hpi_data %>%
+      mutate(Year = year(.data[[date_col]])) %>%
+      filter(!is.na(Year)) %>%
+      {
+        # summarize dynamically based on available regions
+        summarise_args <- c(list(Year = quote(Year)), lapply(region_map, function(col) {
+          rlang::expr(mean(.data[[!!col]], na.rm = TRUE))
+        }))
+        group_by(., Year) %>% dplyr::summarise(!!!summarise_args)
+      } %>%
+      arrange(Year)
+
+    # Pivot to long
+    hpi_long <- hpi_yearly %>%
+      pivot_longer(cols = -Year, names_to = "Region", values_to = "HPI")
+
+    # Plot
+    ggplot(hpi_long, aes(x = Year, y = HPI, group = Region, color = Region)) +
+      geom_line(linewidth = 1.2) +
+      geom_point(size = 2) +
+      scale_y_continuous(labels = comma) +
+      scale_x_continuous(breaks = pretty(hpi_long$Year, n = 10)) +
+      labs(
+        title = "California & Regional Housing Price Index (HPI)",
+        subtitle = "Annual Averages",
+        x = "Year", y = "HPI Index",
+        caption = "Source: CA HPI Data"
+      ) +
+      theme_minimal(base_size = 15) +
+      theme(
+        plot.title = element_text(face = "bold", hjust = 0.5),
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.title = element_blank(),
+        plot.caption = element_text(size = 9)
+      )
+  }
+}
+
 ```
 
 <footer style="background-color: #f8f8f8; padding: 20px; text-align: center; margin-top: 50px;">

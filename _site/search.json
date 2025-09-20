@@ -106,37 +106,7 @@
     "href": "marketing-insights.html",
     "title": "Marketing Insights",
     "section": "",
-    "text": "Last updated: June 2025",
-    "crumbs": [
-      "Marketing Insights"
-    ]
-  },
-  {
-    "objectID": "marketing-insights.html#current-market-trends",
-    "href": "marketing-insights.html#current-market-trends",
-    "title": "Marketing Insights",
-    "section": "Current Market Trends",
-    "text": "Current Market Trends\n\nHome prices in Rancho Cucamonga and surrounding areas have risen 5.2% in the past 12 months.\nAverage days on market: 52.1 days.\nCurrent inventory level: 2.1 months of supply.\n\nSource: MLS / Zillow / Redfin data.",
-    "crumbs": [
-      "Marketing Insights"
-    ]
-  },
-  {
-    "objectID": "marketing-insights.html#buyer-insights",
-    "href": "marketing-insights.html#buyer-insights",
-    "title": "Marketing Insights",
-    "section": "Buyer Insights",
-    "text": "Buyer Insights\n\nBest neighborhoods for first-time buyers → check out Rancho Etiwanda, Victoria Gardens area.\nHow to compete in a competitive market → get pre-approved, work with an experienced agent (like me!), be ready to move fast.\nTips for getting pre-approved → contact a local lender or ask me for recommendations.",
-    "crumbs": [
-      "Marketing Insights"
-    ]
-  },
-  {
-    "objectID": "marketing-insights.html#seller-insights",
-    "href": "marketing-insights.html#seller-insights",
-    "title": "Marketing Insights",
-    "section": "Seller Insights",
-    "text": "Seller Insights\n\nPricing your home correctly → proper pricing = more offers, higher final price.\nHow staging affects sale price → staged homes sell for up to 6-10% more on average.\nCommon mistakes to avoid when selling → overpricing, poor photos, neglecting minor repairs.\n\n🏡 Get Your Home Price Estimate\n\n\n\n  Have a market question?\n\n  \n    \n\n    \n    \n      Don’t fill this out: \n    \n\n    \n      Your Name:\n      \n    \n\n    \n      Your Email:\n      \n    \n\n    \n      Your Question:\n      \n    \n\n    \n      \n        Send Question\n      \n    \n  \n\n\n\n\n\n\n\n\n\n\nFollow me:",
+    "text": "Inland Empire Market Insights\n\n\n\n*Last updated: September 2025*\n\n## Current Market Trends\n\n&lt;div class=\"kpi-container\"&gt;\n  &lt;div class=\"kpi-card\"&gt;\n    &lt;div class=\"kpi-value\"&gt;5.2%&lt;/div&gt;\n    &lt;div class=\"kpi-label\"&gt;12-month price change&lt;/div&gt;\n  &lt;/div&gt;\n  &lt;div class=\"kpi-card\"&gt;\n    &lt;div class=\"kpi-value\"&gt;52.1&lt;/div&gt;\n    &lt;div class=\"kpi-label\"&gt;Average days on market&lt;/div&gt;\n  &lt;/div&gt;\n  &lt;div class=\"kpi-card\"&gt;\n    &lt;div class=\"kpi-value\"&gt;2.1&lt;/div&gt;\n    &lt;div class=\"kpi-label\"&gt;Months of supply&lt;/div&gt;\n  &lt;/div&gt;\n&lt;/div&gt;\n\n&lt;p style=\"font-size:.95rem; opacity:.85; margin-top:6px;\"&gt;\n  &lt;em&gt;Source: MLS / Zillow / Redfin data.&lt;/em&gt;\n&lt;/p&gt;\n\n\n## Buyer Insights\n\n- **Best neighborhoods for first-time buyers** → Rancho Etiwanda, Victoria Gardens area.  \n- **How to compete** → get pre-approved, work with an experienced agent (like me!), be ready to move fast.  \n- **Pre-approval tips** → contact a local lender or ask me for recommendations.\n\n## Seller Insights\n\n- **Price it right** → proper pricing = more showings, more offers, higher final price.  \n- **Staging impact** → staged homes often sell for **6–10% more** on average.  \n- **Avoid these mistakes** → overpricing, poor photos, skipping minor repairs.\n\n\n---\n\n```{=html}\n&lt;!-- MARKET QUESTION FORM --&gt;\n&lt;h2 style=\"text-align: center;\"&gt;🏠 Get Your FREE Custom Home Value Estimate&lt;/h2&gt;\n&lt;p style=\"text-align: center;\"&gt;\n  Curious what your home is worth in today's market? I'll prepare a personalized, no-obligation estimate for you. Just fill out the form below:\n&lt;/p&gt;\n\n&lt;form name=\"home-value\" method=\"POST\" data-netlify=\"true\" netlify-honeypot=\"bot-field\" action=\"/success.html\" \n      style=\"max-width: 600px; margin: 30px auto; padding: 25px; border: 1px solid #ccc; border-radius: 10px; background: #fdfdfd;\"&gt;\n  \n  &lt;input type=\"hidden\" name=\"form-name\" value=\"home-value\" /&gt;\n\n  &lt;!-- Honeypot (spam trap) --&gt;\n  &lt;p style=\"display: none;\"&gt;\n    &lt;label&gt;Don’t fill this out: &lt;input name=\"bot-field\" /&gt;&lt;/label&gt;\n  &lt;/p&gt;\n\n  &lt;div style=\"margin-bottom: 15px;\"&gt;\n    &lt;label for=\"name\"&gt;Name:&lt;/label&gt;&lt;br&gt;\n    &lt;input type=\"text\" name=\"name\" id=\"name\" required style=\"width: 100%; padding: 10px;\"&gt;\n  &lt;/div&gt;\n\n  &lt;div style=\"margin-bottom: 15px;\"&gt;\n    &lt;label for=\"email\"&gt;Email:&lt;/label&gt;&lt;br&gt;\n    &lt;input type=\"email\" name=\"email\" id=\"email\" required style=\"width: 100%; padding: 10px;\"&gt;\n  &lt;/div&gt;\n\n  &lt;div style=\"margin-bottom: 15px;\"&gt;\n    &lt;label for=\"phone\"&gt;Phone Number:&lt;/label&gt;&lt;br&gt;\n    &lt;input type=\"tel\" name=\"phone\" id=\"phone\" style=\"width: 100%; padding: 10px;\"&gt;\n  &lt;/div&gt;\n\n  &lt;div style=\"margin-bottom: 15px;\"&gt;\n    &lt;label for=\"address\"&gt;Property Address:&lt;/label&gt;&lt;br&gt;\n    &lt;input type=\"text\" name=\"address\" id=\"address\" required style=\"width: 100%; padding: 10px;\"&gt;\n  &lt;/div&gt;\n\n  &lt;div style=\"margin-bottom: 15px;\"&gt;\n    &lt;label for=\"message\"&gt;Any questions or special details you'd like to add?&lt;/label&gt;&lt;br&gt;\n    &lt;textarea name=\"message\" id=\"message\" rows=\"4\" style=\"width: 100%; padding: 10px;\"&gt;&lt;/textarea&gt;\n  &lt;/div&gt;\n\n  &lt;div style=\"text-align: center;\"&gt;\n    &lt;button type=\"submit\" style=\"padding: 10px 25px; background-color: #0077cc; color: white; border: none; border-radius: 5px; cursor: pointer;\"&gt;\n      Get My Estimate\n    &lt;/button&gt;\n  &lt;/div&gt;\n&lt;/form&gt;\n\n\n\n\n\n\n\n\n\nFollow me:",
     "crumbs": [
       "Marketing Insights"
     ]
@@ -232,21 +202,11 @@
     ]
   },
   {
-    "objectID": "market-report.html",
-    "href": "market-report.html",
-    "title": "Market Reports",
-    "section": "",
-    "text": "📊 What is the HPI?\nThe California Housing Price Index (HPI) reflects how home prices have changed over time. Each data point shows the average home price trend for that year across California.\n📈 Rising prices = Stronger market.\nAn increasing HPI typically means homes are appreciating in value, demand is strong, and sellers have leverage.\n📉 Falling prices = Cooling market.\nWhen the HPI declines, it may reflect market corrections, rising interest rates, or changing buyer behavior.\n🗺 How does this help you?\nEven though this data reflects state-level averages, Rancho Cucamonga often follows similar trends. Understanding these shifts can help you plan your buying or selling strategy more effectively.",
-    "crumbs": [
-      "Market Report"
-    ]
-  },
-  {
     "objectID": "market-report.html#understanding-this-market-report",
     "href": "market-report.html#understanding-this-market-report",
     "title": "Market Reports",
-    "section": "",
-    "text": "📊 What is the HPI?\nThe California Housing Price Index (HPI) reflects how home prices have changed over time. Each data point shows the average home price trend for that year across California.\n📈 Rising prices = Stronger market.\nAn increasing HPI typically means homes are appreciating in value, demand is strong, and sellers have leverage.\n📉 Falling prices = Cooling market.\nWhen the HPI declines, it may reflect market corrections, rising interest rates, or changing buyer behavior.\n🗺 How does this help you?\nEven though this data reflects state-level averages, Rancho Cucamonga often follows similar trends. Understanding these shifts can help you plan your buying or selling strategy more effectively.",
+    "section": "📝 Understanding This Market Report",
+    "text": "📝 Understanding This Market Report\n📊 What is the HPI?\nThe California Housing Price Index (HPI) reflects how home prices have changed over time. Each data point shows the average home price trend for that year across California.\n📈 Rising prices = Stronger market.\nAn increasing HPI typically means homes are appreciating in value, demand is strong, and sellers have leverage.\n📉 Falling prices = Cooling market.\nWhen the HPI declines, it may reflect market corrections, rising interest rates, or changing buyer behavior.\n🗺 How does this help you?\nEven though this data reflects state-level averages, Rancho Cucamonga often follows similar trends. Understanding these shifts can help you plan your buying or selling strategy more effectively.",
     "crumbs": [
       "Market Report"
     ]
