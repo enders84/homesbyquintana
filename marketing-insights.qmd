@@ -10,7 +10,6 @@ css: styles.css
 
 <!-- HERO BANNER -->
 <div style="background:url('images/Rancho.jpeg') center/cover; height:260px; border-radius:12px; display:flex; align-items:center; justify-content:center; color:white; text-shadow:0 1px 6px rgba(0,0,0,.6); margin-bottom:20px;">
-  <h1 style="margin:0; padding:0 10px;">Inland Empire Market Insights</h1>
 </div>
 
 *Last updated: September 2025*
