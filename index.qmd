@@ -31,18 +31,7 @@ Whether you're buying, selling, or investing — I'm here to help you succeed wi
 
 ---
 
-# Featured Listings
-
-🏡 **Active Listings:**  
-874 Windwood Dr, Walnut CA 91789
-2 Bedroom, 1 Bathroom, 878 sq. ft 
-
-<div class="gallery">
-  <img src="images/IMG_0383.jpg" alt="874 Windwood Dr - Exterior View">
-  <img src="images/IMG_0381.jpg" alt="874 Windwood Dr - Entryway">
-</div>
-
-
+# Featured Listings Coming Soon:
 
  🚀 **Contact:** 
 📱 Phone - (909) 377-7894	
